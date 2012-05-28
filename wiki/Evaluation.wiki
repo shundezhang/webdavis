@@ -1,0 +1,157 @@
+#summary Evaluation
+
+== Evaluation ==
+
+Server: Sun X4150, 2 Quad-Core CPU (3.12GHz), 16MB memory, CentOS 5[[BR]]
+Client: a CentOS 5 VM with 256M[[BR]]
+Network: 1Gbps
+
+=== Stability Test ===
+Transfer a 1G file 30 times continuously, including upload and download.[[BR]]
+
+[[Image(1gtest.png)]]
+
+Transfer a 500M file 30 times continuously, including upload and download.[[BR]]
+
+[[Image(500mtest.png)]]
+
+Upload/download files (4M, 8M, 16M, 32M, 64M, 128M, 256M, 512M, 1024M, 2048M) 20 times continuously with iput, iget, curl(HTTP and HTTPS).[[BR]] 
+
+[[Image(copytest.png)]]
+
+=== Stress Test ===
+IOZone (http://www.iozone.org)
+{{{
+[root@ngspare /tmp]# /usr/bin/iozone -i 0 -i 1 f /tmp/webdav/sss -s 1m -s 10m -s 100m -s 200m -s 500m -r 256 -s 700m -s 900m -s 1000m
+        Iozone: Performance Test of File I/O
+                Version $Revision: 3.315 $
+                Compiled for 32 bit mode.
+                Build: linux
+
+        Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+                     Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+                     Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+                     Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+                     Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy,
+                     Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root.
+
+        Run began: Sat Apr  4 21:42:35 2009
+
+        File size set to 1024 KB
+        File size set to 10240 KB
+        File size set to 102400 KB
+        File size set to 204800 KB
+        File size set to 512000 KB
+        Record Size 256 KB
+        File size set to 716800 KB
+        File size set to 921600 KB
+        File size set to 1024000 KB
+        Command line used: /usr/bin/iozone -i 0 -i 1 -s 1m -s 10m -s 100m -s 200m -s 500m -r 256 -s 700m -s 900m -s 1000m f /tmp/webdav/sss
+        Output is in Kbytes/sec
+        Time Resolution = 0.000001 seconds.
+        Processor cache size set to 1024 Kbytes.
+        Processor cache line size set to 32 bytes.
+        File stride size set to 17 * record size.
+                                                            random  random    bkwd   record   stride
+              KB  reclen   write rewrite    read    reread    read   write    read  rewrite     read   fwrite frewrite   fread  freread
+            1024     256   78952 1110526  1962003  3251552
+           10240     256  369473  912659  2207813  2455016
+          102400     256  334929  860526  2882312  2683717
+          204800     256   98627   99702    54287    55984
+          512000     256   39523   45810    25613    58536
+          716800     256   47975   50485    54618    56984
+          921600     256   50037   50389    59173    65754
+         1024000     256   52920   51370    65720    56534
+
+iozone test complete.
+}}}
+{{{
+[root@ngspare /tmp]# /usr/bin/iozone -i 0 -i 1 f /tmp/nfs/test/sss -s 1m -s 10m -s 100m -s 200m -s 500m -r 256 -s 700m -s 900m -s 1000m
+        Iozone: Performance Test of File I/O
+                Version $Revision: 3.315 $
+                Compiled for 32 bit mode.
+                Build: linux
+
+        Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+                     Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+                     Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+                     Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+                     Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy,
+                     Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root.
+
+        Run began: Sat Apr  4 21:49:36 2009
+
+        File size set to 1024 KB
+        File size set to 10240 KB
+        File size set to 102400 KB
+        File size set to 204800 KB
+        File size set to 512000 KB
+        Record Size 256 KB
+        File size set to 716800 KB
+        File size set to 921600 KB
+        File size set to 1024000 KB
+        Command line used: /usr/bin/iozone -i 0 -i 1 -s 1m -s 10m -s 100m -s 200m -s 500m -r 256 -s 700m -s 900m -s 1000m f /tmp/nfs/test/sss
+        Output is in Kbytes/sec
+        Time Resolution = 0.000001 seconds.
+        Processor cache size set to 1024 Kbytes.
+        Processor cache line size set to 32 bytes.
+        File stride size set to 17 * record size.
+                                                            random  random    bkwd   record   stride
+              KB  reclen   write rewrite    read    reread    read   write    read  rewrite     read   fwrite frewrite   fread  freread
+            1024     256  192014 1223356  2730873  4162469
+           10240     256  393741  935754  2587183  2793250
+          102400     256  332111  842083  2846109  2891426
+          204800     256  102254  108898    61124    60275
+          512000     256   56108   51387    58677    63079
+          716800     256   54376   57618    61197    63648
+          921600     256   53312   46257    37116    66973
+         1024000     256   50486   49398    65675    53385
+
+iozone test complete.
+}}}
+{{{
+[root@ngspare /tmp]# /usr/bin/iozone -i 0 -i 1 f /tmp/samba/ -s 1m -s 10m -s 100m -s 200m -s 500m -r 256 -s 700m -s 900m -s 1000m
+        Iozone: Performance Test of File I/O
+                Version $Revision: 3.315 $
+                Compiled for 32 bit mode.
+                Build: linux
+
+        Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+                     Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+                     Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+                     Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+                     Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy,
+                     Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root.
+
+        Run began: Sat Apr  4 22:07:16 2009
+
+        File size set to 1024 KB
+        File size set to 10240 KB
+        File size set to 102400 KB
+        File size set to 204800 KB
+        File size set to 512000 KB
+        Record Size 256 KB
+        File size set to 716800 KB
+        File size set to 921600 KB
+        File size set to 1024000 KB
+        Command line used: /usr/bin/iozone -i 0 -i 1 -s 1m -s 10m -s 100m -s 200m -s 500m -r 256 -s 700m -s 900m -s 1000m f /tmp/samba/
+        Output is in Kbytes/sec
+        Time Resolution = 0.000001 seconds.
+        Processor cache size set to 1024 Kbytes.
+        Processor cache line size set to 32 bytes.
+        File stride size set to 17 * record size.
+                                                            random  random    bkwd   record   stride
+              KB  reclen   write rewrite    read    reread    read   write    read  rewrite     read   fwrite frewrite   fread  freread
+            1024     256  409101 1269048  2908473  4355745
+           10240     256  397654  952738  2896745  3034177
+          102400     256  310717  866591  2897652  2958682
+          204800     256  103238  108725    65314    60771
+          512000     256   57924   53948    56908    54876
+          716800     256   56819   51787    66512    66636
+          921600     256   52569   52768    49531    65012
+         1024000     256   52013   50930    56612    67807
+
+iozone test complete.
+}}}
+
+[[Image(stresstest.png)]]

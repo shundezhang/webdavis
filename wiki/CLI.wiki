@@ -1,0 +1,20 @@
+#summary Commandline client
+
+=== cadaver ===
+
+[http://www.webdav.org/cadaver/ cadaver] is a command-line client for UNIX users to connect a WebDAV server. 
+
+The installation is very simple. For example, under MacOS, you can use port.
+{{{
+port install cadaver
+}}}
+
+For Linux, you can use yum to install it.
+
+To use it, you can just need to enter the WebDAV URL following the command, e.g.
+{{{
+cadaver https://df.arcs.org.au/ARCS/home
+}}}
+Then you'll get a prompt for username/password. After you get in, you can type ''help'' to list supported commands. Basically, you can use normal unix commands, such as cd, rm, mkdir. The use is somewhat like a FTP client.
+
+cadaver for windows can be found here: http://www.phtagr.org/2009/04/01/cadaver-for-windows/

@@ -12,7 +12,7 @@ Bug Fixes and Updates:
 
   * Change of colours for the user interface. This was done to make Davis look more like other tools being used by ARCS.
 
-  * The ui-include* configuration items are now applied to the user interface code before other config substitutions are made. This means that Davis <parameter /> tags can now be used in the included snippets.
+  * The ui-include configuration items are now applied to the user interface code before other config substitutions are made. This means that Davis `<parameter />` tags can now be used in the included snippets.
 
   * When a resource is down and a user deletes a file which has a copy on the unavailable resource, Davis will no longer report an error to the user if the file has actually been deleted. Jargon returns a failure result to Davis in this scenario and so the user was warned. Davis now checks whether the file has actually gone, and if so, logs the event but doesn't notify the user.
 

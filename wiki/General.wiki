@@ -47,7 +47,7 @@ At the beginning of each connection, a prompt is popped up to ask username and p
  * Server Name will be used as Zone Name.
  * If Server Name is provided and Domain Name is not, Domain Name will be changed to be the same as Server Name.
 
-For technical details, please see [wiki:HowTo/General/UserAuthenticationTechDetails here].
+For technical details, please see [UserAuthenticationTechDetails here].
 
 == SRB/iRODS collection/Directory ==
 

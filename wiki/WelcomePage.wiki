@@ -65,7 +65,7 @@ iRODS/SRB is widely used by many research groups in the world. Quite a few diffe
 
 == Release Notes ==
 
- * [ReleaseNotes0.9.5 0.9.5] - coming soon!
+ * [ReleaseNotes095 0.9.5] - coming soon!
  * [ReleaseNotes0.9.4 0.9.4] - 2 February 2011
  * [ReleaseNotes0.9.3.1-fedpatch 0.9.3.1 federated zones UI patch] - 21 January 2011
  * [ReleaseNotes0.9.3.1 0.9.3.1] - 16 December 2010

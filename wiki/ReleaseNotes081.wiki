@@ -1,0 +1,14 @@
+#summary ReleaseNotes 0.8.1
+
+New Features:
+
+ * Supports iRODS 2.1
+ * Supports files up to 4G (must be <4G on a 32bit client)
+ * New web browser mode user interface
+ * New modular config parameters system with dynamic objects. New buttons can be added to execute a rule.
+
+Bug fixes:
+
+ * Delete and Empty Trash bugs fixed
+ * Recursive permissions bug fixed
+ * Files containing non alphanumeric chars handled correctly

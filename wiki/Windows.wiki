@@ -11,6 +11,7 @@ https://df.arcs.org.au/ARCS/worldview/davis-materials/webdav.htm
 == Windows XP ==
 
 In Windows XP, you can use the '''Add Network Place Wizard''' or '''Internet Explorer''' to upload and access your files via WebDAV, if you have the required permissions.
+
 === Using the "Add Network Place" Wizard ===
 
 To use the '''Add Network Place''' Wizard to add a shortcut to your computer that allows you to upload and access files in SRB/iRODS using WebDAV:
@@ -32,6 +33,7 @@ http://webdavis.googlecode.com/svn/wiki/attachments/windows/xp-5.png
    6. When prompted, enter your username and password. See [wiki:HowTo/General General doc] for details.
 http://webdavis.googlecode.com/svn/wiki/attachments/windows/xp-6.png
 You may now drag and drop files and folders between your computer and the sites to which you just connected. However, you cannot delete items from a site by dragging them to the Recycle Bin on your desktop. To delete an item, right-click it and select Delete.
+
 http://webdavis.googlecode.com/svn/wiki/attachments/windows/xp-7.png
 === Using Internet Explorer ===
 
@@ -43,9 +45,9 @@ http://webdavis.googlecode.com/svn/wiki/attachments/windows/ie-1.png
 {{{
     https://adelaide.sasr.edu.au/<SRB/iRODS collection> 
 }}}
-    See [wiki:HowTo/General General doc] for details.
+    See [General General doc] for details.
 http://webdavis.googlecode.com/svn/wiki/attachments/windows/ie-2.png
-   3. When prompted, enter your username and password like what is done for '''Network Place'''. See [wiki:HowTo/General General doc] for details.
+   3. When prompted, enter your username and password like what is done for '''Network Place'''. See [General General doc] for details.
 
 The contents of the destination folder will appear in a window where you can open individual files, browse to other folders on your computer, and transfer files between folders.
 

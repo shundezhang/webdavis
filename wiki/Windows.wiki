@@ -28,10 +28,12 @@ http://webdavis.googlecode.com/svn/wiki/attachments/windows/xp-4.png
 {{{
     https://adelaide.sasr.edu.au/<SRB collection> 
 }}}
-    See [wiki:HowTo/General General doc] for details.
+    See [General General doc] for details.
 http://webdavis.googlecode.com/svn/wiki/attachments/windows/xp-5.png
-   6. When prompted, enter your username and password. See [wiki:HowTo/General General doc] for details.
+   6. When prompted, enter your username and password. See [General General doc] for details.
+
 http://webdavis.googlecode.com/svn/wiki/attachments/windows/xp-6.png
+
 You may now drag and drop files and folders between your computer and the sites to which you just connected. However, you cannot delete items from a site by dragging them to the Recycle Bin on your desktop. To delete an item, right-click it and select Delete.
 
 http://webdavis.googlecode.com/svn/wiki/attachments/windows/xp-7.png
@@ -83,7 +85,7 @@ Windows Vista is shipped with a bug so your computer must have Microsoft's Softw
 {{{
     https://adelaide.sasr.edu.au/<SRB collection> 
 }}}
-    See [wiki:HowTo/General General doc] for details.
+    See [General General doc] for details.
     Enter the User name and Password you use to log on to Learn@UW and access your course and click OK.
     To save your password, check "Remember my password."
     * Note: You may be prompted to enter your User name and password two or three times.

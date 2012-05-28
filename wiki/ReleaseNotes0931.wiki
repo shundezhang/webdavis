@@ -1,0 +1,13 @@
+#summary ReleaseNotes 0.9.3.1
+
+New features:
+
+  * 
+
+[[BR]]
+
+Bug Fixes and Updates:
+
+  * Fixed problem with Netdrive and downloading. Netdrive doesn't send a User-Agent header and Davis was getting confused!
+
+  * Updated the Davis REST document.

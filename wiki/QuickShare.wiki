@@ -1,0 +1,67 @@
+#summary how to config QuickShare
+
+
+== QuickShare ==
+
+The QuickShare feature allows each users to easily share files they own (have uploaded them) by generating a link that can be externally accessed by anyone who has the link (with a unique hash). The link can be accessed without having an account on the server - which makes it much easier to share files with either individual collaborators who do not have server accounts - or making a file public.
+
+The QuickShare feature is implemented by a separate servlet running on the same server as Davis. The servlet is connecting to iRODS separately, under its own account (typically called QuickShare).
+
+To get QuickShare going (in Davis 0.9.3+):
+
+    * Create the iRODS QuickShare user - as an ordinary rodsuser user, picking a random password 
+
+
+{{{
+iadmin mkuser QuickShare rodsuser
+iadmin moduser QuickShare password QUICKSHARE-PASSWORD
+
+}}}
+
+    * Add the following attributes to the Davis configuration (davis-host.properties) 
+
+
+{{{
+# QuickShare: metadata attribute name
+sharing-key=QuickShare
+
+# QuickShare: iRODS account & and server connection details
+sharing-user=QuickShare
+sharing-password=QUICKSHARE-PASSWORD
+sharing-host=irods.institution.org.au
+sharing-port=1247
+sharing-zone=ARCS
+
+# QuickShare - URL prefix for the Davis server
+sharing-URL-prefix=https://df.arcs.org.au/quickshare
+
+}}}
+
+    * Patch your iRODS server so that it can can properly expand the userNameClient variable in acAclPolicy rule (used below). Apply the [http://projects.arcs.org.au/svn/systems/trunk/dataFabricScripts/iRODS/BugFix/patches-2.4/aclpolicy_username.patch aclpolicy_username.patch patch] to server/api/src/rsGenQuery.c and recompile and restart your iRODS server. 
+
+    * Add a rule exempting the QuickShare user from the acAclPolicy STRICT policy to your rules files in iRODS/server/config/reConfigs (replacing the existing acAclPolicy rule)
+
+
+{{{
+      acAclPolicy|"$userNameClient" != "QuickShare"|msiAclPolicy(STRICT)|nop
+
+}}}
+
+    * Add a !ProxyPass directive for /quickshare into /etc/httpd/conf.d/df.conf:
+
+
+{{{
+      ProxyPass /quickshare ajp://localhost:8009/quickshare flushpackets=on
+
+}}}
+
+    * Restart Davis and reload Apache 
+
+
+{{{
+service davis restart
+service httpd reload
+
+}}}
+
+See also [http://projects.arcs.org.au/trac/davis/attachment/wiki/HowTo/Configuration/davis.properties davis.properties]

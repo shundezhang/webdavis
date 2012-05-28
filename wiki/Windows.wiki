@@ -1,0 +1,94 @@
+#summary Window client setup guide
+
+Windows users use '''Web Folders''' as webdav client.
+
+Videos:
+
+https://df.arcs.org.au/ARCS/worldview/davis-materials/webdav.htm
+
+(In this guide, we assume that Davis is installed on a machine named adelaide.sasr.edu.au.)
+
+== Windows XP ==
+
+In Windows XP, you can use the '''Add Network Place Wizard''' or '''Internet Explorer''' to upload and access your files via WebDAV, if you have the required permissions.
+=== Using the "Add Network Place" Wizard ===
+
+To use the '''Add Network Place''' Wizard to add a shortcut to your computer that allows you to upload and access files in SRB/iRODS using WebDAV:
+
+   1. On the desktop, double-click My Network Places.
+[[Image(xp-1.png)]]
+   2. In the "Network Tasks" pane, click Add a network place.
+[[Image(xp-2.png)]]
+   3. On the welcome screen, click Next.
+[[Image(xp-3.png)]]
+   4. Select Choose another network location, and then click Next.
+[[Image(xp-4.png)]]
+   5. In the "Internet or network address:" field, enter a URL that points to the destination Resources tool. For example,
+{{{
+    https://adelaide.sasr.edu.au/<SRB collection> 
+}}}
+    See [wiki:HowTo/General General doc] for details.
+[[Image(xp-5.png)]]
+   6. When prompted, enter your username and password. See [wiki:HowTo/General General doc] for details.
+[[Image(xp-6.png)]]
+You may now drag and drop files and folders between your computer and the sites to which you just connected. However, you cannot delete items from a site by dragging them to the Recycle Bin on your desktop. To delete an item, right-click it and select Delete.
+[[Image(xp-7.png)]]
+=== Using Internet Explorer ===
+
+Using Internet Explorer, you can upload and access your files via WebDAV. To do so:
+
+   1. In Internet Explorer, from the File menu, select Open... .
+[[Image(ie-1.png)]]
+   2. In the window that appears, click the checkbox next to '''Open as Web folder'''. In the "Open:" field, enter the URL that points to the destination davis, and click OK.
+{{{
+    https://adelaide.sasr.edu.au/<SRB/iRODS collection> 
+}}}
+    See [wiki:HowTo/General General doc] for details.
+[[Image(ie-2.png)]]
+   3. When prompted, enter your username and password like what is done for '''Network Place'''. See [wiki:HowTo/General General doc] for details.
+
+The contents of the destination folder will appear in a window where you can open individual files, browse to other folders on your computer, and transfer files between folders.
+
+When you're finished, exit Internet Explorer to close your connection.
+
+== Windows Vista or Windows 7 ==
+
+Connection to Davis can be accomplished using the NetDrive software which can be downloaded from http://www.netdrive.net and is free for non-commercial home use.
+
+If you are using Windows Vista, you will also need to install a patch, as outlined at http://support.microsoft.com/kb/907306
+
+You can then connect to Davis as follows:
+
+    * Double click on the NetDrive shortcut, then click "New Site". 
+    * Enter "Davis" in the "Site name" field and select "WebDav"in the "Server Type" field.
+    * Click the "Advanced" button and ensure that "UTF-8" appears in the "Encoding" field.
+    * Also tick the "Use HTTPS" box, then click the "OK" button.
+    * Select an appropriate (e.g. "W:") value in the "Drive" field, then fill out the "Account" and "Password" fields.
+    * Click the "Connect" button and your home folder should appear.
+    * You can now drag and drop files between that folder and any local folder as required!
+
+== Windows Vista (This may not work!) ==
+
+Windows Vista is shipped with a bug so your computer must have Microsoft's Software Update for Web Folders (KB907306) installed in order for WebDAV to function properly with Vista. The patch can be downloaded from http://www.microsoft.com/downloads/details.aspx?FamilyId=17C36612-632E-4C04-9382-987622ED1D64. After installing this patch, you can go ahead to set up webdav.
+
+ 1. Select Computer from the Start icon
+ 2. With Computer selected in the left panel, you see "Map network drive" in the tool bar. Click on "Map network drive".
+ 3. On the "Map Network Drive" dialog, click on the "Connect to a Web site that you can use to store your documents and pictures" link.
+ 4. On the first of a series of "Add Network Location" dialogs, click Next.
+ 5. Select "Choose a custom network location." and click Next.
+ 6. Enter the URL of the network address and click Next.
+ 7. The network address the form:
+{{{
+    https://adelaide.sasr.edu.au/<SRB collection> 
+}}}
+    See [wiki:HowTo/General General doc] for details.
+    Enter the User name and Password you use to log on to Learn@UW and access your course and click OK.
+    To save your password, check "Remember my password."
+    * Note: You may be prompted to enter your User name and password two or three times.
+ 8. Type a name for the network location.
+    This is the name of the folder you will use to access your SRB files.
+ 9. Press Finish.
+    In the left panel under "Folders", the name of the network location you chose in step 8 will appear in the list. 
+
+== Some useful links ==
+http://www.zorched.net/2006/03/01/more-webdav-tips-tricks-and-bugs/

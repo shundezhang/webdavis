@@ -1,0 +1,105 @@
+#summary Welcome page
+
+= Welcome to Davis (A Web__DAV__-__i__RODS/__S__RB gateway) =
+
+|| For queries please contact: rt@arcs.org.au ||
+Davis is a Java web application aiming to provide a webdav interface for accessing the SDSC iRods/SRB data grid. Its [wiki:idea idea] is "Enabling iRODS/SRB to the rest of the world", with the use of general Webdav protocol and HTTP protocol.
+
+iRODS/SRB is widely used by many research groups in the world. Quite a few different clients have been developed, e.g. iCommands/Scommands, Hermes, JUX. However, they all required a third-party software, and a non-HTTP port, 1247/5544. The issues are: some software may require a certain IT knowledge to install; some sites may have firewall blocking non-HTTP(S) access.
+
+[wiki:Webdav Webdav] is a protocol designed for web page development. It offers basic file management methods, such as directory browsing, basic file information retrieving, creating/deleting directories, file upload/download. Also it runs on port 80(HTTP) or 443(HTTPS), which is not likely be blocked by firewalls (For some organizations, a http proxy will be used).
+
+== Features ==
+
+ * Webdav version 1, 2. Supports locking mechanism.
+ * Supports Windows, Linux and Mac 
+ * iRODS and Shibboleth authentication with WAYF
+ * Supports user password and Shibboleth authentication on SRB 
+ * Uses tilde(~) for home directory 
+ * Supports browser mode, where users can download and browse files 
+ * Change permissions, add/modify/delete metadata in Browse mode 
+ * Support multi-threaded and resumable download, e.g. using [http://www.flashget.com/download.htm FlashGet] 
+
+== How to Use ==
+
+=== [wiki:HowTo/General General] ===
+
+=== [wiki:HowTo/Windows Windows] ===
+
+=== [wiki:HowTo/Mac Mac] ===
+
+=== [wiki:HowTo/Linux Linux] ===
+
+=== [wiki:HowTo/Browser Browser Mode] ===
+
+=== [wiki:HowTo/iPhone iPhone] ===
+
+=== [wiki:HowTo/SymbianS60 Symbian S60] ===
+
+=== [wiki:HowTo/CLI Command-line Clients] ===
+
+=== [wiki:HowTo/OpenDAP OpenDAP] ===
+
+=== [wiki:HowTo/REST REST API] ===
+
+== How to Install ==
+
+=== [http://code.google.com/p/webdavis/downloads/list Download] ===  
+
+=== [wiki:HowTo/Install Installation] ===
+
+=== [wiki:HowTo/Configuration Configuration] ===
+
+=== [wiki:HowTo/Update Update] ===
+
+=== [wiki:QuickShare QuickShare] ===
+
+=== [wiki:HowTo/DynamicObjects Dynamic Objects] ===
+
+=== [wiki:HowTo/DynamicUIReload Dynamic Configuration Reload] ===
+
+=== [wiki:HowTo/AnonymousAccess Anonymous Access] ===
+
+=== [wiki:HowTo/Shibboleth Shibboleth SP installation and integration with Davis] ===
+
+=== [wiki:HowTo/Evaluation Evaluation] ===
+
+=== [wiki:HowTo/Publications Publications & Presentations] ===
+
+== Release Notes ==
+
+ * [wiki:ReleaseNotes/0.9.5 0.9.5] - coming soon!
+ * [wiki:ReleaseNotes/0.9.4 0.9.4] - 2 February 2011
+ * [wiki:ReleaseNotes/0.9.3.1-fedpatch 0.9.3.1 federated zones UI patch] - 21 January 2011
+ * [wiki:ReleaseNotes/0.9.3.1 0.9.3.1] - 16 December 2010
+ * [wiki:ReleaseNotes/0.9.3 0.9.3] - 3 December 2010
+ * [wiki:ReleaseNotes/0.9.2 0.9.2] - 6 August 2010
+ * [wiki:ReleaseNotes/0.9.1 0.9.1] - 6 May 2010
+ * [wiki:ReleaseNotes/0.8.2 0.8.2] - 25 November 2009
+ * [wiki:ReleaseNotes/0.8.1 0.8.1] - 2 November 2009
+ * [wiki:ReleaseNotes/0.7.3 0.7.3] - 7 August 2009
+ * [wiki:ReleaseNotes/0.7.2 0.7.2] - 16 June 2009
+ * [wiki:ReleaseNotes/0.7.1 0.7.1] - 5 June 2009
+ * [wiki:ReleaseNotes/0.7.0 0.7.0] - 25 May 2009
+ * [wiki:ReleaseNotes/0.6.1 0.6.1] - 13 January 2009
+ * [wiki:ReleaseNotes/0.6.0 0.6.0] - 8 December 2008
+ * [wiki:ReleaseNotes/0.5.1 0.5.1] - 5 December 2008
+ * [wiki:ReleaseNotes/0.5.0 0.5.0] - 23 November 2008
+
+== Contact ==
+
+For any problems or comments, please contact me at shunde(dot)zhang(at)arcs(dot)org(dot)au
+
+== Mailing List ==
+
+You can join the user mailing list: davis-chat@googlegroups.com
+
+Mailing list website: http://groups.google.com/group/davis-chat
+
+== License ==
+
+This software is open source and under [http://www.apache.org/licenses/LICENSE-2.0.html Apache 2] and [http://www.gnu.org/copyleft/lesser.txt LGPL].
+
+== Acknowledgment ==
+
+Davis is implemented with the source code of a famous Webdav-SMB gateway software, [http://davenport.sourceforge.net/ Davenport]. Many thanks to the author, Eric Glass.

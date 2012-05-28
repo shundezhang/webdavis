@@ -1,0 +1,79 @@
+#summary Configuration
+
+== Configuration ==
+
+$JETTY_HOME/webapps/root/WEB-INF/web.xml now contains a list of properties files for Davis. The parameter 'config-files' is a comma separated list of properties files to be read by Davis. Any items in later files will override identical items in earlier files. This allows configuration to be done in an hierarchical manner with general properties being specified in earlier files and more specific organisation or host related properties being encapsulated in files which appear later in the list.
+
+The default set of properties files is davis.properties, davis-organisation.properties, davis-host.properties, davis-dev.properties, but any set of files may be specified instead. If these file names are given in relative form, Davis will expect to find it in the same directory as web.xml. Otherwise an absolute path may be given. 
+
+The current Davis distribution includes examples of these files in the same directory as web.xml. These files contain:
+
+ davis.properties::
+    Contains all configurable items and their default values. It is recommended that this file be left as is and overrides be specified in later files.
+
+ davis-organisation.properties::
+    Contains organisation specific overrides. eg. 'organisation-name'
+
+ davis-host.properties::
+    Contains host specific overrides. eg. 'server-name'
+
+ davis-dev.properties::
+    Reserved for developer overrides.
+
+To create a new Davis configuration, you may like to look through davis.properties first to see the range of configurable items. Next you'll need to edit the example organisation and host files, making changes where appropriate. Common items which may require editing appear in the table below.
+
+||'''Param name'''||'''Description'''||
+||server-type||server type, ''srb'' or ''irods'', lower case||
+||default-idp||default IdP name for shibboleth authentication||
+||server-name||default server name||
+||default-domain||default domain, for password login||
+||default-resource||default resource to use in this order: [[BR]]1. resource_name equals this value; [[BR]]2. resource_name contains this value; [[BR]]3. first resource in the list||
+||proxy-host||proxy host for slcs, set to empty if no proxy is needed||
+||proxy-port||proxy port for slcs, set to empty if no proxy is needed||
+||proxy-username||proxy username for slcs, set to empty if no proxy is needed||
+||proxy-password||proxy password for slcs, set to empty if no proxy is needed||
+||webdavis.Log.threshold||log level, set to DEBUG if you want all information, otherwise set to ERROR||
+||anonymousCredentials||Specifies an account to use for anonymous browsing. Syntax is username:password||
+||anonymousCollections||Specifies collections for anonymous browsing. Separated by comma, e.g. /ARCS/projects/public,/ARCS/projects/open||
+
+A full list of configurable items can be found in the attachment below.
+
+Log files are retained for 30 days by default. If you want to change that, have a look at $JETTY_HOME/etc/jetty-logging.xml
+{{{
+    <New id="ServerLog" class="java.io.PrintStream">
+      <Arg>
+        <New class="org.mortbay.util.RolloverFileOutputStream">
+          <Arg><SystemProperty name="jetty.home" default="."/>/logs/yyyy_mm_dd.stderrout.log</Arg>
+          <Arg type="boolean">false</Arg>
+          <Arg type="int">30</Arg>
+          <Arg><Call class="java.util.TimeZone" name="getTimeZone"><Arg>GMT</Arg></Call></Arg>
+          <Get id="ServerLogName" name="datedFilename"/>
+        </New>
+      </Arg>
+    </New>
+}}}
+Change the value "30" to any number you want.
+
+You need to '''restart''' jetty after changing either of the xml files or any of the configuration parameter files.
+
+=== Configuration for real shibboleth authentication ===
+||'''Param name'''||'''Description'''||
+||insecureConnection||Indicates which authentication method will be used if users establish an insecure connection (HTTP). The supported values are:[[BR]]shib (shibboleth authentication)[[BR]]basic (basic authentication, really not secure, use it if you know what you are doing!)[[BR]]block (doesn't allow insecure connections)[[BR]]The default value is: block||
+||shared-token-header-name||HTTP header name of shared token, this is a unique ID to identify an IdP user, you can use something else but it has to be unique||
+||cn-header-name||HTTP header name of common name, this is a display name for an IdP user||
+||admin-cert-file||Cert file path that is used to establish a connection as rodsadmin||
+||admin-key-file||Key file path that is used to establish a connection as rodsadmin||
+
+We need a few changes to the iRODS server.
+
+ 1. The admin cert/key file is a certificate that is set to a rodsadmin user, e.g. rods. (rods is the only user we can use now, due to some issues in jargon) I suggest we use iRODS server certificate, since it is already on the server and secure. Then use the following command to set it to rods. Then Davis can use rods to find/create users.
+{{{
+iadmin moduser rods DN "<SERVER_DN>"
+}}}
+ 1. Put createUser script in <IRODS_HOME>/server/bin/cmd. This script accepts three parameters, common name, shared token, and random password. You can use the attached script, remember to change its name to '''createuUser'''. This script will find an existing account with the given shared token. If an account is found, the random password is set to it, then the user will log in with this account. If no account is found, a new one will be created according to your common name. Then the random password is set and the user uses it to log in.
+
+[[BR]]
+
+
+== See also: ==
+ Configuration details for QuickShare.

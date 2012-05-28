@@ -1,0 +1,189 @@
+#summary Installation guide
+
+== Installation Procedures ==
+
+=== Getting Davis in place ===
+
+It is easier to install and run jetty as root since it runs on 443. If you want to use a non-root user, see the following document for a work-around.
+http://docs.codehaus.org/display/JETTY/port80
+
+ 1. Install JDK 1.5+. Set environment parameter JAVA_HOME.
+ 1. Download Davis tar ball from http://code.google.com/p/webdavis/downloads/list, and extract it somewhere, e.g. /opt/davis, and this will be '''JETTY_HOME'''.
+ 1. Copy bin/jetty.sh to be /etc/init.d/davis and make sure it is executable.
+{{{
+chmod +x /etc/init.d/davis
+}}}
+ 1. Edit /etc/default/jetty. Put JETTY_HOME in it. For example,
+{{{
+JETTY_HOME=/opt/davis
+}}}
+    Also it is advised to put JAVA_HOME so that jetty won't search java every time it starts, e.g.
+{{{
+JAVA_HOME=/usr/java/jdk1.6.0_12
+}}}
+    If jetty is running on a server, it is suggested to give it more memory. ''-Xms<size>'' set initial Java heap size, ''-Xmx<size>'' set maximum Java heap size, ''-server'' to select the "server" VM. e.g.
+{{{
+JAVA_OPTIONS="-server -Xms768m -Xmx1024m"
+}}}
+ 1. Use /etc/init.d/davis start|stop to start/stop Davis.
+ 1. Set it to start when the system starts
+{{{
+chkconfig --add davis
+}}}
+ 1. If you want to run jetty standalone, continue with the section "Jetty6 standalone"; if you want to run jetty with Apache, continue with the section "Jetty6 + Apache".
+
+=== Jetty6 standalone ===
+The jetty.xml file supplied with Davis now restricts connections to localhost by default. You'll need to locate the following line in etc/jetty.xml:
+
+         <Set name="host">127.0.0.1</Set>
+
+and change it appropriately. To allow connections from anywhere, delete the line.
+
+If you want to run jetty standalone, you need to set up SSL in jetty.
+
+ 1. Get your CA cert to any folder, e.g. /tmp.
+{{{
+wget https://ca.apac.edu.au/pub/cacert/cacert.crt
+}}}
+ 1. Generate pkcs12 file of host certificate. Here you need to give a password to the pkcs12 file, e.g. jetty6. Remember this password.
+{{{
+cat /etc/grid-security/hostcert.pem cacert.crt > cert-chain.txt
+openssl pkcs12 -export -inkey /etc/grid-security/hostkey.pem -in cert-chain.txt -out jetty.pkcs12
+}}}
+ 1. Generate ''keystore'' for java and '''place it in $JETTY_HOME/etc'''
+{{{
+java -classpath $JETTY_HOME/lib/jetty-util-6.1.12.jar:$JETTY_HOME/lib/jetty-6.1.12.jar org.mortbay.jetty.security.PKCS12Import jetty.pkcs12 keystore
+}}}
+ 1. It is a good practice not to have plain text password in xml file. We can use this command to get a password in a form of OBF or MD5.
+{{{
+java -classpath $JETTY_HOME/lib/jetty-util-6.1.12.jar:$JETTY_HOME/lib/jetty-6.1.12.jar org.mortbay.jetty.security.Password <password>
+}}}
+    For example,
+{{{
+$ java -classpath $JETTY_HOME/lib/jetty-util-6.1.12.jar:$JETTY_HOME/lib/jetty-6.1.12.jar org.mortbay.jetty.security.Password jetty6
+jetty6
+OBF:1ktv1x0r1z0f1z0f1x1v1kqz
+MD5:e032a01e5c4dbb03a29fb031f6b37658
+}}}
+    Then we can use the OBF form in the next step.
+ 1. Modify $JETTY_HOME/etc/jetty.xml, change the password in the ''SslSocketConnector'' section to be the above OBF string. For example,
+{{{
+  <Call name="addConnector">
+    <Arg>
+      <New class="org.mortbay.jetty.security.SslSocketConnector">
+        <Set name="Port">443</Set>
+        <Set name="maxIdleTime">30000</Set>
+        <Set name="handshakeTimeout">2000</Set>
+        <Set name="keystore"><SystemProperty name="jetty.home" default="." />/etc/keystore</Set>
+        <Set name="password">OBF:1ktv1x0r1z0f1z0f1x1v1kqz</Set>
+        <Set name="keyPassword">OBF:1ktv1x0r1z0f1z0f1x1v1kqz</Set>
+        <Set name="truststore"><SystemProperty name="jetty.home" default="." />/etc/keystore</Set>
+        <Set name="trustPassword">OBF:1ktv1x0r1z0f1z0f1x1v1kqz</Set>
+        <Set name="handshakeTimeout">2000</Set>
+        <!-- Set name="ThreadPool">
+          <New class="org.mortbay.thread.BoundedThreadPool">
+            <Set name="minThreads">10</Set>
+            <Set name="maxThreads">250</Set>
+         </New>
+        </Set -->
+      </New>
+    </Arg>
+  </Call>
+}}}
+Reference:
+
+http://docs.codehaus.org/display/JETTY/How+to+configure+SSL
+
+=== Jetty6 + Apache ===
+
+If you use Jetty6 behind Apache (2.2 is suggested), Apache can do all the SSL work for you and you don't need to enable SSL on Jetty. The setup is easier.
+
+ 1. Disable the SSL section in jetty.xml, and add ajp section to after the SSL section
+{{{
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!-- Add a AJP listener on port 8009                           -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <Call name="addConnector">
+    <Arg>
+       <New class="org.mortbay.jetty.ajp.Ajp13SocketConnector">
+         <Set name="port">8009</Set>
+         <Set name="ThreadPool">
+           <New class="org.mortbay.thread.BoundedThreadPool">
+             <Set name="minThreads">50</Set>
+             <Set name="maxThreads">500</Set>
+             <Set name="MaxIdleTimeMs">0</Set>
+         </New>
+         </Set>
+         <Set name="statsOn">false</Set>
+       </New>
+    </Arg>
+  </Call>
+}}}
+ 1. Make sure you have jetty-ajp-6.1.xx.jar under $JETTY_HOME/lib/ext. If you don't, get one.
+ 1. Configure your Apache to enable SSL, e.g.
+{{{
+yum install mod_ssl
+}}}
+ 1. Get a certificate, for education, IPSCA provides free cert for 2 years. Modify ssl.conf to use your cert, e.g.
+{{{
+SSLCertificateFile /etc/grid-security/hostcert.pem
+SSLCertificateKeyFile /etc/grid-security/hostkey.pem
+SSLCertificateChainFile /etc/grid-security/IPS-IPSCABUNDLE.crt
+}}}
+ 1. then add the following to ssl.conf in /etc/httpd.conf/ssl.conf
+{{{
+ProxyRequests Off
+ProxyPreserveHost On
+
+ProxyPass / ajp://localhost:8009/ flushpackets=on
+}}}
+ 1. You may have to modify httpd.conf like this.
+{{{
+#
+# Timeout: The number of seconds before receives and sends time out.
+#
+Timeout 1200
+
+# 
+# KeepAlive: Whether or not to allow persistent connections (more than
+# one request per connection). Set to "Off" to deactivate.
+#
+KeepAlive On
+}}}
+ 1. Restart Jetty and Apache.
+ 1. (Optional) You can also copy dojoroot to /var/www/html so that it is served from Apache. Then configure Apache to only proxy your zone.
+{{{
+ProxyPass /YOUR_ZONE_NAME/ ajp://localhost:8009/YOUR_ZONE_NAME/ flushpackets=on
+}}}
+
+The following is for real shibboleth authentication.
+ 1. Install mod_shib2. Instructions are here: https://spaces.internet2.edu/display/SHIB2/Home   https://spaces.internet2.edu/display/SHIB2/NativeSPMetadataProvider
+ 1. Configure mod_shib2 to pass shared token and common name to HTTP header. I only use shibboleth for HTTP requests (For HTTPS, user login is still in traditional way, e.g. IdP Name\username). The following is an example. 
+{{{
+<VirtualHost *:80>
+  ServerName arcs-df.eresearchsa.edu.au
+  DocumentRoot "/var/www/html"
+
+  ProxyPass /ARCS/ ajp://localhost:8009/ARCS/ flushpackets=on
+
+  <Location /ARCS>
+  AuthType shibboleth
+  ShibRequireSession On
+  ShibUseHeaders On
+  require valid-user
+  </Location>
+</VirtualHost>
+}}}
+
+
+=== Jetty5 + Apache (deprecated) ===
+ 1. Install JDK 1.5+. Set environment parameter JAVA_HOME.
+ 1. Download [http://wrapper.tanukisoftware.org/doc/english/download.jsp Java Service Wrapper], and extract it to somewhere, e.g. /opt/wrapper
+ 1. Download the Davis tar ball, and extract it somewhere, e.g. /opt/davis
+ 1. As root, copy bin/davis to /etc/init.d/davis
+ 1. Edit /etc/init.d/davis, and change DAVIS_HOME to be the proper place. Change RUN_AS_USER if you want to run it as a user other than root.
+ 1. Edit $DAVIS_HOME/conf/wrapper.conf, and change set.DAVIS_HOME to be the proper place.
+ 1. By default, the web application will be deployed as root(/). If you want to change it to /davis, rename $DAVIS_HOME/webapps/root to $DAVIS_HOME/webapps/davis.
+ 1. Use /etc/init.d/davis to start/stop/restart.
+ 1. If you want to use apache as the front end, see http://docs.codehaus.org/display/JETTY/Configuring+mod_proxy.
+ 1. In $DAVIS_HOME/conf/wrapper.conf, wrapper.java.initmemory and wrapper.java.maxmemory can be changed to achieve better performance.

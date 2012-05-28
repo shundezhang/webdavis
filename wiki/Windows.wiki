@@ -16,35 +16,35 @@ In Windows XP, you can use the '''Add Network Place Wizard''' or '''Internet Exp
 To use the '''Add Network Place''' Wizard to add a shortcut to your computer that allows you to upload and access files in SRB/iRODS using WebDAV:
 
    1. On the desktop, double-click My Network Places.
-[[Image(xp-1.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/windows/xp-1.png
    2. In the "Network Tasks" pane, click Add a network place.
-[[Image(xp-2.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/windows/xp-2.png
    3. On the welcome screen, click Next.
-[[Image(xp-3.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/windows/xp-3.png
    4. Select Choose another network location, and then click Next.
-[[Image(xp-4.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/windows/xp-4.png
    5. In the "Internet or network address:" field, enter a URL that points to the destination Resources tool. For example,
 {{{
     https://adelaide.sasr.edu.au/<SRB collection> 
 }}}
     See [wiki:HowTo/General General doc] for details.
-[[Image(xp-5.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/windows/xp-5.png
    6. When prompted, enter your username and password. See [wiki:HowTo/General General doc] for details.
-[[Image(xp-6.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/windows/xp-6.png
 You may now drag and drop files and folders between your computer and the sites to which you just connected. However, you cannot delete items from a site by dragging them to the Recycle Bin on your desktop. To delete an item, right-click it and select Delete.
-[[Image(xp-7.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/windows/xp-7.png
 === Using Internet Explorer ===
 
 Using Internet Explorer, you can upload and access your files via WebDAV. To do so:
 
    1. In Internet Explorer, from the File menu, select Open... .
-[[Image(ie-1.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/windows/ie-1.png
    2. In the window that appears, click the checkbox next to '''Open as Web folder'''. In the "Open:" field, enter the URL that points to the destination davis, and click OK.
 {{{
     https://adelaide.sasr.edu.au/<SRB/iRODS collection> 
 }}}
     See [wiki:HowTo/General General doc] for details.
-[[Image(ie-2.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/windows/ie-2.png
    3. When prompted, enter your username and password like what is done for '''Network Place'''. See [wiki:HowTo/General General doc] for details.
 
 The contents of the destination folder will appear in a window where you can open individual files, browse to other folders on your computer, and transfer files between folders.

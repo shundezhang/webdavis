@@ -1,0 +1,15 @@
+#summary ReleaseNotes 0.6.0
+
+New Features:
+
+ * iRODS
+   * Basic file operations are supported
+   * metadata and permissions(browser mode) are not supported, because jargon doesn't have these functions for iRODS 2.0
+   * Shib auth is not supported, because GSI auth has not been implemented in jargon for iRODS
+ * Support multi-threaded and resumable download, e.g. using FlashGet
+
+Upgrade from 0.5.x:
+
+ * use jargon 2.0.3
+ * replace $JETTY_HOME/webapps/root/WEB-INF/lib/davis.jar
+ * replace $JETTY_HOME/webapps/root/WEB-INF/web.xml and modify it accordingly

@@ -4,7 +4,7 @@
 
 As shibboleth is not supported by existing WebDAV clients, we have to use HTTP 'basic' authentication (e.g. username/password box) for them. As they are transferred as 'plain' text, we need to use HTTPS in this case. We use real shibboleth login for HTTP connections, as the whole login process will be via HTTPS and data transfer will be via HTTP, which is faster.
 
-[wiki/attachments/general/login.png]
+wiki/attachments/general/login.png
 
 === Under HTTP ===
 Real Shibboleth with WAYF, then redirected to your home IdP. You enter your IdP username/password, if valid you'll get into Davis.

@@ -1,0 +1,36 @@
+#summary ReleaseNotes 0.7.0
+
+New Features:
+
+ * iRODS
+   * Web Browser mode: metadata and permission
+   * Unicode support
+   * new slcs-client, with no debug output in log file
+ * proper Shibboleth WAYF login
+ * log in with your certificate in myproxy server
+ * because a dot can be part of a username, login format is changed from
+{{{
+[IDP_name\]username[.domain_name][@server_name][#resource_name]
+}}}
+   to
+{{{
+[IDP_name\]username[%domain_name][@server_name][#resource_name]
+}}}
+ * Web Browser mode: 
+   * Create a new collection
+   * Upload a file
+   * Delete a collection or file
+   * New batch mode allows operations on multiple items
+
+Upgrade from 0.6.x:
+
+ * replace $JETTY_HOME/webapps/root/WEB-INF/lib/davis.jar
+ * replace $JETTY_HOME/webapps/root/WEB-INF/lib/jargon.jar
+ * replace $JETTY_HOME/webapps/root/WEB-INF/lib/slcs-client.jar
+ * add $JETTY_HOME/webapps/root/WEB-INF/lib/commons-io-1.4.jar
+ * add $JETTY_HOME/webapps/root/WEB-INF/lib/commons-fileupload-1.2.1.jar
+ * replace $JETTY_HOME/webapps/root/WEB-INF/web.xml and modify it accordingly
+
+Patch for iRODS:
+
+ * If you are using iRODS 2.0.1, you need the following patch for iRODS.

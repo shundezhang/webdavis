@@ -24,4 +24,4 @@ Bug Fixes and Updates:
 
   * Zone name is now included when connecting to irods for admin account to fix real-shib login to slave server.
 
-  * Jetty now listens for connections only on localhost by default (see HowTo/Install to change this).
+  * Jetty now listens for connections only on localhost by default (see [Installation] to change this).

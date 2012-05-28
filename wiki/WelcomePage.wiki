@@ -21,69 +21,67 @@ iRODS/SRB is widely used by many research groups in the world. Quite a few diffe
 
 == How to Use ==
 
-=== [HowTo/General General] ===
+=== [General General] ===
 
-=== [HowTo/Windows Windows] ===
+=== [Windows Windows] ===
 
-=== [HowTo/Mac Mac] ===
+=== [Mac Mac] ===
 
-=== [HowTo/Linux Linux] ===
+=== [Linux Linux] ===
 
-=== [HowTo/Browser Browser Mode] ===
+=== [Browser Browser Mode] ===
 
-=== [HowTo/iPhone iPhone] ===
+=== [iPhone iPhone] ===
 
-=== [HowTo/SymbianS60 Symbian S60] ===
+=== [SymbianS60 Symbian S60] ===
 
-=== [HowTo/CLI Command-line Clients] ===
+=== [CLI Command-line Clients] ===
 
-=== [HowTo/OpenDAP OpenDAP] ===
+=== [OpenDAP OpenDAP] ===
 
-=== [HowTo/REST REST API] ===
+=== [REST REST API] ===
 
 == How to Install ==
 
-=== [http://code.google.com/p/webdavis/downloads/list Download] ===  
+=== [Installation Installation] ===
 
-=== [wiki:HowTo/Install Installation] ===
+=== [Configuration Configuration] ===
 
-=== [wiki:HowTo/Configuration Configuration] ===
+=== [Update Update] ===
 
-=== [wiki:HowTo/Update Update] ===
+=== [QuickShare QuickShare] ===
 
-=== [wiki:QuickShare QuickShare] ===
+=== [DynamicObjects Dynamic Objects] ===
 
-=== [wiki:HowTo/DynamicObjects Dynamic Objects] ===
+=== [DynamicUIReload Dynamic Configuration Reload] ===
 
-=== [wiki:HowTo/DynamicUIReload Dynamic Configuration Reload] ===
+=== [AnonymousAccess Anonymous Access] ===
 
-=== [wiki:HowTo/AnonymousAccess Anonymous Access] ===
+=== [Shibboleth Shibboleth SP installation and integration with Davis] ===
 
-=== [wiki:HowTo/Shibboleth Shibboleth SP installation and integration with Davis] ===
+=== [Evaluation Evaluation] ===
 
-=== [wiki:HowTo/Evaluation Evaluation] ===
-
-=== [wiki:HowTo/Publications Publications & Presentations] ===
+=== [Publications Publications & Presentations] ===
 
 == Release Notes ==
 
- * [wiki:ReleaseNotes/0.9.5 0.9.5] - coming soon!
- * [wiki:ReleaseNotes/0.9.4 0.9.4] - 2 February 2011
- * [wiki:ReleaseNotes/0.9.3.1-fedpatch 0.9.3.1 federated zones UI patch] - 21 January 2011
- * [wiki:ReleaseNotes/0.9.3.1 0.9.3.1] - 16 December 2010
- * [wiki:ReleaseNotes/0.9.3 0.9.3] - 3 December 2010
- * [wiki:ReleaseNotes/0.9.2 0.9.2] - 6 August 2010
- * [wiki:ReleaseNotes/0.9.1 0.9.1] - 6 May 2010
- * [wiki:ReleaseNotes/0.8.2 0.8.2] - 25 November 2009
- * [wiki:ReleaseNotes/0.8.1 0.8.1] - 2 November 2009
- * [wiki:ReleaseNotes/0.7.3 0.7.3] - 7 August 2009
- * [wiki:ReleaseNotes/0.7.2 0.7.2] - 16 June 2009
- * [wiki:ReleaseNotes/0.7.1 0.7.1] - 5 June 2009
- * [wiki:ReleaseNotes/0.7.0 0.7.0] - 25 May 2009
- * [wiki:ReleaseNotes/0.6.1 0.6.1] - 13 January 2009
- * [wiki:ReleaseNotes/0.6.0 0.6.0] - 8 December 2008
- * [wiki:ReleaseNotes/0.5.1 0.5.1] - 5 December 2008
- * [wiki:ReleaseNotes/0.5.0 0.5.0] - 23 November 2008
+ * [ReleaseNotes0.9.5 0.9.5] - coming soon!
+ * [ReleaseNotes0.9.4 0.9.4] - 2 February 2011
+ * [ReleaseNotes0.9.3.1-fedpatch 0.9.3.1 federated zones UI patch] - 21 January 2011
+ * [ReleaseNotes0.9.3.1 0.9.3.1] - 16 December 2010
+ * [ReleaseNotes0.9.3 0.9.3] - 3 December 2010
+ * [ReleaseNotes0.9.2 0.9.2] - 6 August 2010
+ * [ReleaseNotes0.9.1 0.9.1] - 6 May 2010
+ * [ReleaseNotes0.8.2 0.8.2] - 25 November 2009
+ * [ReleaseNotes0.8.1 0.8.1] - 2 November 2009
+ * [ReleaseNotes0.7.3 0.7.3] - 7 August 2009
+ * [ReleaseNotes0.7.2 0.7.2] - 16 June 2009
+ * [ReleaseNotes0.7.1 0.7.1] - 5 June 2009
+ * [ReleaseNotes0.7.0 0.7.0] - 25 May 2009
+ * [ReleaseNotes0.6.1 0.6.1] - 13 January 2009
+ * [ReleaseNotes0.6.0 0.6.0] - 8 December 2008
+ * [ReleaseNotes0.5.1 0.5.1] - 5 December 2008
+ * [ReleaseNotes0.5.0 0.5.0] - 23 November 2008
 
 == Contact ==
 

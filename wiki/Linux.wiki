@@ -1,0 +1,49 @@
+#summary Linux client setup guide
+
+Linux users use '''Konqueror''', '''Gnome Nautilus''' or '''DAVFS''' as webdav client.
+
+== Konqueror ==
+To connect to WebDAV server using Konqueror, type the url in the address field starting with webdav:// for HTTP or starting with webdavs:// for HTTP/SSL. You can also use Konqueror Location->Open Location menu.
+
+== Gnome Nautilus ==
+To connect to WebDAV server using Nautilus, in File menu select Connect to Server. In the Service Type field select WebDAV (HTTP) or Secure WebDAV (HTTPS) and fill in at last Server field.
+[[Image(linux-1.png)]]
+
+[[Image(linux-2.png)]]
+
+[[Image(linux-3.png)]]
+
+'''NOTICE''':[[BR]]
+There is a bug in gnome-utils 2.24: https://bugs.launchpad.net/ubuntu/+source/nautilus/+bug/222532 [[BR]]
+You need to use the ''Custom Location'' Option for this version, and the URI is like davs://server_name/~.
+
+[[Image(linux-4.png)]]
+
+[[Image(linux-5.png)]]
+
+== DAVFS ==
+Advanced users can use DAVFS.[[BR]]
+http://www.sfu.ca/itservices/linux/webdav-linux.html [[BR]]
+http://dav.sourceforge.net/
+
+Note: davfs2 has trouble uploading (putting) files to the server. Uploads result in zero length files, probably due to incorrectly implemented locking in Davis. To avoid this issue, you need to add a configuration item to your ~/.davfs2/davfs2.conf file as follows:
+
+
+{{{
+use_locks       0
+drop_weak_etags   1
+}}}
+
+
+This will disable the use of locks and so will require care if files are accessed from multiple places simultaneously.
+
+Note: To prevent davfs2 from timing out when very large directories (thousands of files) are being used, it may be necessary to add the following configuration item to your ~/.davfs2/davfs2.conf file:
+
+
+{{{
+read_timeout    300
+}}}
+
+
+This will increase the read timeout period to 5 minutes rather than the default 30 seconds.
+ 

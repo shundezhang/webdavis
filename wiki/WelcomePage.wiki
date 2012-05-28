@@ -2,7 +2,6 @@
 
 = Welcome to Davis (A Web__DAV__-__i__RODS/__S__RB gateway) =
 
-|| For queries please contact: rt@arcs.org.au ||
 Davis is a Java web application aiming to provide a webdav interface for accessing the SDSC iRods/SRB data grid. Its [wiki:idea idea] is "Enabling iRODS/SRB to the rest of the world", with the use of general Webdav protocol and HTTP protocol.
 
 iRODS/SRB is widely used by many research groups in the world. Quite a few different clients have been developed, e.g. iCommands/Scommands, Hermes, JUX. However, they all required a third-party software, and a non-HTTP port, 1247/5544. The issues are: some software may require a certain IT knowledge to install; some sites may have firewall blocking non-HTTP(S) access.
@@ -22,25 +21,25 @@ iRODS/SRB is widely used by many research groups in the world. Quite a few diffe
 
 == How to Use ==
 
-=== [wiki:HowTo/General General] ===
+=== [HowTo/General General] ===
 
-=== [wiki:HowTo/Windows Windows] ===
+=== [HowTo/Windows Windows] ===
 
-=== [wiki:HowTo/Mac Mac] ===
+=== [HowTo/Mac Mac] ===
 
-=== [wiki:HowTo/Linux Linux] ===
+=== [HowTo/Linux Linux] ===
 
-=== [wiki:HowTo/Browser Browser Mode] ===
+=== [HowTo/Browser Browser Mode] ===
 
-=== [wiki:HowTo/iPhone iPhone] ===
+=== [HowTo/iPhone iPhone] ===
 
-=== [wiki:HowTo/SymbianS60 Symbian S60] ===
+=== [HowTo/SymbianS60 Symbian S60] ===
 
-=== [wiki:HowTo/CLI Command-line Clients] ===
+=== [HowTo/CLI Command-line Clients] ===
 
-=== [wiki:HowTo/OpenDAP OpenDAP] ===
+=== [HowTo/OpenDAP OpenDAP] ===
 
-=== [wiki:HowTo/REST REST API] ===
+=== [HowTo/REST REST API] ===
 
 == How to Install ==
 

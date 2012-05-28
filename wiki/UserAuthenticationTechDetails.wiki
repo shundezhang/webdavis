@@ -4,7 +4,7 @@
 
 Davis supports traditional username/password and GSI authentication, as well the latest Shibboleth authentication. In order to be compatible with existing WebDAV clients, HTTP basic authentication must be used. To protect the password sent by basic authentication, we use HTTPS. There is no need to use HTTPS for direct Shibboleth login, as the connection to IdP is via HTTPS. After authentication is finished, HTTP can be used for data transfer, given that the data is not important or confidential.
 
-[[Image(HowTo/General:login.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/general/login.png
 
 == HTTP Access ==
 

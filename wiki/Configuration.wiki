@@ -22,7 +22,7 @@ The current Davis distribution includes examples of these files in the same dire
 
 To create a new Davis configuration, you may like to look through davis.properties first to see the range of configurable items. Next you'll need to edit the example organisation and host files, making changes where appropriate. Common items which may require editing appear in the table below.
 
-||'''Param name'''||'''Description'''||
+||*Param name*||*Description*||
 ||server-type||server type, ''srb'' or ''irods'', lower case||
 ||default-idp||default IdP name for shibboleth authentication||
 ||server-name||default server name||
@@ -72,7 +72,7 @@ iadmin moduser rods DN "<SERVER_DN>"
 }}}
  1. Put createUser script in <IRODS_HOME>/server/bin/cmd. This script accepts three parameters, common name, shared token, and random password. You can use the attached script, remember to change its name to '''createuUser'''. This script will find an existing account with the given shared token. If an account is found, the random password is set to it, then the user will log in with this account. If no account is found, a new one will be created according to your common name. Then the random password is set and the user uses it to log in.
 
-[[BR]]
+<br/>
 
 
 == See also: ==

@@ -110,7 +110,7 @@ Members appearing inside the '''inputs''' member define information sources for 
    When the user clicks on the OK button of the prompt dialog, all '''name''' members are sent to the Davis server along with the values in their corresponding edit box. The server will then execute any rule defined in the object's declaration, and will include the passed argument information in the rule.
 
   '''text'''
-   The string value specified will be displayed as a paragraph. It is interpreted as an HTML fragment and so may contain tags such as <br> or <b> to control formatting.
+   The string value specified will be displayed as a paragraph. It is interpreted as an HTML fragment and so may contain tags such as `<br>` or `<b>` to control formatting.
 
   These '''name''' and '''text''' members allow an elaborate prompt dialog to be defined for a widget. A name and text member pair produce a labeled input box, while a text member with no name member produces paragraphs of text. Defining a number of these members can create dialogs containing richly formatted text, capable of supplying multiple input arguments.
 

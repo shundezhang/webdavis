@@ -17,7 +17,7 @@ Note: This will affect the user's interactions with SMB/CIFS, AFP, NFS, and WebD
 To setup a Davis connection:
  1. In the Finder, press Cmd-k . (Alternatively, from the Go menu, choose Connect to Server.)
 http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-1.png
- 2. In the "Server Address:" field, enter a URL that points to the destination Resources tool. See [wiki:HowTo/General General doc] for details.
+ 2. In the "Server Address:" field, enter a URL that points to the destination Resources tool. See [General General doc] for details.
 http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-2.png
  3. You can save this URL as your favorite URL by clicking '''+'''.
  4. Click "Connect". When prompted, enter your username and password. See [wiki:HowTo/General General doc] for details.

@@ -14,7 +14,7 @@ New features:
 
   * New status popup indicates what Davis is doing when it's busy (eg reading contents of a collection during navigation).
 
-  * In davis config files, the ui-include* items now allow a file to be specified. If the value for the item begins with '<', it is assumed to be code, otherwise it will be treated as a file path.
+  * In davis config files, the ui-include items now allow a file to be specified. If the value for the item begins with '<', it is assumed to be code, otherwise it will be treated as a file path.
 
 [[BR]]
 

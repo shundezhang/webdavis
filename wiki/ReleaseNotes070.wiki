@@ -34,3 +34,6 @@ Upgrade from 0.6.x:
 Patch for iRODS:
 
  * If you are using iRODS 2.0.1, you need the following patch for iRODS.
+
+== attachment ==
+http://code.google.com/p/webdavis/source/browse/wiki/attachments/releasenotes070/rsGsiAuthRequest.c

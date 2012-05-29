@@ -7,23 +7,25 @@ To connect to WebDAV server using Konqueror, type the url in the address field s
 
 == Gnome Nautilus ==
 To connect to WebDAV server using Nautilus, in File menu select Connect to Server. In the Service Type field select WebDAV (HTTP) or Secure WebDAV (HTTPS) and fill in at last Server field.
-[[Image(linux-1.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/linux/linux-1.png
 
-[[Image(linux-2.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/linux/linux-2.png
 
-[[Image(linux-3.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/linux/linux-3.png
 
-'''NOTICE''':[[BR]]
-There is a bug in gnome-utils 2.24: https://bugs.launchpad.net/ubuntu/+source/nautilus/+bug/222532 [[BR]]
+'''NOTICE''':
+
+There is a bug in gnome-utils 2.24: https://bugs.launchpad.net/ubuntu/+source/nautilus/+bug/222532 
+
 You need to use the ''Custom Location'' Option for this version, and the URI is like davs://server_name/~.
 
-[[Image(linux-4.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/linux/linux-4.png
 
-[[Image(linux-5.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/linux/linux-5.png
 
 == DAVFS ==
-Advanced users can use DAVFS.[[BR]]
-http://www.sfu.ca/itservices/linux/webdav-linux.html [[BR]]
+Advanced users can use DAVFS.<br/>
+http://www.sfu.ca/itservices/linux/webdav-linux.html <br/>
 http://dav.sourceforge.net/
 
 Note: davfs2 has trouble uploading (putting) files to the server. Uploads result in zero length files, probably due to incorrectly implemented locking in Davis. To avoid this issue, you need to add a configuration item to your ~/.davfs2/davfs2.conf file as follows:

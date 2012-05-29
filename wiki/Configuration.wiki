@@ -77,3 +77,8 @@ iadmin moduser rods DN "<SERVER_DN>"
 
 == See also: ==
  Configuration details for QuickShare.
+
+== attachments ==
+http://code.google.com/p/webdavis/source/browse/wiki/attachments/configuration/davis.properties
+
+http://code.google.com/p/webdavis/source/browse/wiki/attachments/configuration/createUser.pl-v3.04

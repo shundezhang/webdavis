@@ -2,22 +2,22 @@
 
 == Evaluation ==
 
-Server: Sun X4150, 2 Quad-Core CPU (3.12GHz), 16MB memory, CentOS 5[[BR]]
-Client: a CentOS 5 VM with 256M[[BR]]
+Server: Sun X4150, 2 Quad-Core CPU (3.12GHz), 16MB memory, CentOS 5<br>
+Client: a CentOS 5 VM with 256M<br>
 Network: 1Gbps
 
 === Stability Test ===
-Transfer a 1G file 30 times continuously, including upload and download.[[BR]]
+Transfer a 1G file 30 times continuously, including upload and download.<br>
 
-[[Image(1gtest.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/evaluation/1gtest.png
 
-Transfer a 500M file 30 times continuously, including upload and download.[[BR]]
+Transfer a 500M file 30 times continuously, including upload and download.<br>
 
-[[Image(500mtest.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/evaluation/500mtest.png
 
 Upload/download files (4M, 8M, 16M, 32M, 64M, 128M, 256M, 512M, 1024M, 2048M) 20 times continuously with iput, iget, curl(HTTP and HTTPS).[[BR]] 
 
-[[Image(copytest.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/evaluation/copytest.png
 
 === Stress Test ===
 IOZone (http://www.iozone.org)
@@ -154,4 +154,4 @@ iozone test complete.
 iozone test complete.
 }}}
 
-[[Image(stresstest.png)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/evaluation/stresstest.png

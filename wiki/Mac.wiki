@@ -20,7 +20,7 @@ http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-1.png
  2. In the "Server Address:" field, enter a URL that points to the destination Resources tool. See [General General doc] for details.
 http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-2.png
  3. You can save this URL as your favorite URL by clicking '''+'''.
- 4. Click "Connect". When prompted, enter your username and password. See [wiki:HowTo/General General doc] for details.
+ 4. Click "Connect". When prompted, enter your username and password. See [General General doc] for details.
 http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-3.png
  5. Your SRB collection then appears as a network drive.
 http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-4.png

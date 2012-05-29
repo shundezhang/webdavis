@@ -8,8 +8,8 @@ https://df.arcs.org.au/ARCS/worldview/davis-materials/davis-browser.htm
 
 This is a screenshot of modifying metadata.
 
-[[Image(browser-1.jpg)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/browser/browser-1.jpg
 
 This is a screenshot of changing permissions.
 
-[[Image(browser-2.jpg)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/browser/browser-2.jpg

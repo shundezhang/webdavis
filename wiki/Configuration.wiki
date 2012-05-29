@@ -22,7 +22,7 @@ The current Davis distribution includes examples of these files in the same dire
 
 To create a new Davis configuration, you may like to look through davis.properties first to see the range of configurable items. Next you'll need to edit the example organisation and host files, making changes where appropriate. Common items which may require editing appear in the table below.
 
-||*Param name*||*Description*||
+|| *Param name* || *Description* ||
 ||server-type||server type, ''srb'' or ''irods'', lower case||
 ||default-idp||default IdP name for shibboleth authentication||
 ||server-name||default server name||

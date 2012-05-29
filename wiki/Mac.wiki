@@ -25,7 +25,7 @@ http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-3.png
  5. Your SRB collection then appears as a network drive.
 http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-4.png
  6. You can now use the preview function. (Press 'space' on the file you want to preview.)
-http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-5.png
+http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-5.jpg
  6. To disconnect, simply click the "eject" icon on the left of Finder. 
 
 == Other WebDAV client on Mac ==
@@ -39,4 +39,4 @@ Hit 'connect', and you'll get a directory list.
 http://webdavis.googlecode.com/svn/wiki/attachments/mac/cyberduck-2.png
 
 Also you can hit 'space' on any file to preview it.
-http://webdavis.googlecode.com/svn/wiki/attachments/mac/cyberduck-3.png
+http://webdavis.googlecode.com/svn/wiki/attachments/mac/cyberduck-3.jpg

@@ -7,7 +7,6 @@ Davis now supports the addition of objects to the user interface (UI) and server
 
 Declarations for widgets such as buttons or metadata can be added to the Davis configuration properties files by a site administrator. Where those widgets will appear in the UI, and what their actions should be are specified in their declaration.
 
-[[BR]]
 
 === Declaring Dynamic Objects ===
 
@@ -31,7 +30,7 @@ Dynamic objects may be declared in any of the Davis configuration properties fil
 ''JSON''
  JSON formatted text defining the object (see http://json.org/)
 
-[[BR]]
+
 
 === Currently Defined JSON Members ===
 
@@ -77,7 +76,7 @@ Dynamic objects may be declared in any of the Davis configuration properties fil
 '''rule'''
  Currently only used for '''button''' objects. This associates an iRODS rule with a dynamic object. For example, after a button widget is clicked and the OK button of its prompt is selected, the rule text is sent to the iRODS server for execution. This is the primary motivation for adding dynamic objects to Davis. Tying rules to UI widgets allows organisation specific functionality to be included in Davis without that functionality being hard coded.
 
-[[BR]]
+
 
 === Dynamic Object Types ===
 
@@ -89,7 +88,7 @@ Currently there are only two types of dynamic objects defined for Davis.
  '''displayMetadata'''
   An item of metadata to be displayed. The metadata tag to be displayed is determined by the '''displayMetadata''' value, and the position and method for display is defined by the '''location''' member described above.
 
-[[BR]]
+
 
 
 === Dynamic Object Inputs ===
@@ -115,12 +114,12 @@ Members appearing inside the '''inputs''' member define information sources for 
 
   These '''name''' and '''text''' members allow an elaborate prompt dialog to be defined for a widget. A name and text member pair produce a labeled input box, while a text member with no name member produces paragraphs of text. Defining a number of these members can create dialogs containing richly formatted text, capable of supplying multiple input arguments.
 
-[[BR]]
+
 
 
 === Examples ===
 
-'''Example 1'''
+====Example 1====
 
 
 {{{
@@ -150,7 +149,7 @@ dynamicobject_rule1={"name": "create_pid", "displayTitle": "Create ANDS PID", "o
  This dynamic object places a button with title "Create ANDS PID" below the selection buttons to the right of the files listing table. The button is disabled for anonymous collections and trash folders, and enabled for one or more selected items. When the button is clicked, a dialog appears which gives the a warning, including a link to the ANDS PID policy page. If the OK button is clicked, then the specified rule (python based) is executed on the iRODS server in order to request a PID.
 
 
-'''Example 2'''
+====Example 2====
 
 
 {{{
@@ -163,7 +162,7 @@ dynamicobject_colPID1={"name": "pid_col1", "displayTitle": "ARCS PID: ", "object
  This causes the UI to display the contents of the PID metadata tag for the current directory below the breadcrumb.
 
 
-'''Example 3'''
+====Example 3====
 
 
 {{{
@@ -176,7 +175,7 @@ dynamicobject_selPID1={"name": "pid_sel1", "displayTitle": "ARCS PID", "objectTy
  A column will appear in the listing table with the heading "ARCS PID". Any item in the listing table which has a metadata tag "PID" will have an entry in that column which is the value of the PID tag. That entry will also be a link to the URL contained in the item's HANDLE_URL metadata tag.
 
 
-'''Example 4'''
+====Example 4====
 
 
 {{{

@@ -58,7 +58,7 @@ You need to '''restart''' jetty after changing either of the xml files or any of
 
 === Configuration for real shibboleth authentication ===
 || *Param name* || *Description* ||
-||insecureConnection||Indicates which authentication method will be used if users establish an insecure connection (HTTP). The supported values are:[[BR]]shib (shibboleth authentication)[[BR]]basic (basic authentication, really not secure, use it if you know what you are doing!)[[BR]]block (doesn't allow insecure connections)[[BR]]The default value is: block||
+||insecureConnection||Indicates which authentication method will be used if users establish an insecure connection (HTTP). The supported values are:<br>shib (shibboleth authentication)<br>basic (basic authentication, really not secure, use it if you know what you are doing!)<br>block (doesn't allow insecure connections)<br>The default value is: block||
 ||shared-token-header-name||HTTP header name of shared token, this is a unique ID to identify an IdP user, you can use something else but it has to be unique||
 ||cn-header-name||HTTP header name of common name, this is a display name for an IdP user||
 ||admin-cert-file||Cert file path that is used to establish a connection as rodsadmin||

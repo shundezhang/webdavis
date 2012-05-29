@@ -6,7 +6,7 @@ Davis essentially turns an SRB folder into a locally accessible folder.  Using t
 
 
 To map your SRB folder, follow the instruction here:
-[wiki:HowTo/General Howto - General]
+[General Howto - General]
 
 The directory is now accessible on your machine as /Volumes/~.  Depending on how you have specified your SRB collection, the folder name may be something other than tilda (~).
 
@@ -34,14 +34,14 @@ Restart Tomcat.
 
 To see if your newly added dataset is working, open up a browser and browse to http://localhost:8080/thredds/catalog/DavisTest/catalog.html and you should see a list of NetCDF files, something like the following:
 
-[[Image(catalog.jpg)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/opendap/catalog.jpg
 
 The following is an example of looking at a file through OPeNDAP - the dataset view and the OPeNDAP query form.
 
-[[Image(file.jpg)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/opendap/file.jpg
 
-[[Image(form.jpg)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/opendap/form.jpg
 
 The following is a screencap GoogleEarth with a WMS overlay of a NCEP1 variable.  It is generated through a modified TDS using ([http://www.opengeospatial.org/standards/wms WMS]).  The server is reading data which is stored in SRB which has been mapped to a directory accessibly by TDS using Davis.
 
-[[Image(googleEarth.jpg)]]
+http://webdavis.googlecode.com/svn/wiki/attachments/opendap/googleEarth.jpg

@@ -3,6 +3,13 @@
 
 == Shibboleth SP ==
 
+Firstly, follow instruction from AAF to set up a standard SP:
+
+http://wiki.aaf.edu.au/tech-info/sp-install-guide
+
+
+
+
 
 uncomment
 {{{

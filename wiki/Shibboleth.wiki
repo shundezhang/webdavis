@@ -1,12 +1,12 @@
 #summary Shibboleth
 
+This includes two steps: firstly, you need a working SP; secondly, configure Davis to interactive with SP.
 
 == Shibboleth SP ==
 
-Firstly, follow instruction from AAF to set up a standard SP:
+Follow instruction from AAF to set up a standard SP:
 
 http://wiki.aaf.edu.au/tech-info/sp-install-guide
-
 
 
 
@@ -22,3 +22,5 @@ add the following line to attribute-map.xml:
 {{{
 <Attribute name="urn:oid:1.3.6.1.4.1.27856.1.2.5" id="auEduPersonSharedToken"/>
 }}}
+
+== Davis Configuration ==

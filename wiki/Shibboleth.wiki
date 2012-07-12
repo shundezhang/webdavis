@@ -100,7 +100,13 @@ iadmin moduser rods DN "<SERVER_DN>"
 http://code.google.com/p/webdavis/source/browse/wiki/attachments/createUser
 }}}  
 
-
+===Create necessary Soft links===
+{{{
+cd /var/www/html
+ln -s $JETTY_HOME/webapps/dojoroot dojoroot
+ln -s $JETTY_HOME/webapps/images images
+ln -s $JETTY_HOME/webapps/include include
+}}}
 
 ===Logging===
 There are 2 different Shibboleth-related log files you can access for troubleshooting.

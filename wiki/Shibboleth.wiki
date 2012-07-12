@@ -4,7 +4,7 @@
 
 ==1. Installing Shibboleth Service Provider[SP].==
  {{{
-yum install httpd mod_ssl
+yum install httpd mod_ssl php
 wget http://download.opensuse.org/repositories/security://shibboleth/CentOS_5/security:shibboleth.repo -P /etc/yum.repos.d
 yum install shibboleth [or] yum install shibboleth.x86_64
 }}}

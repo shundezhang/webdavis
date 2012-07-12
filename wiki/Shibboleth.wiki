@@ -80,6 +80,28 @@ http://code.google.com/p/webdavis/source/browse/wiki/attachments/attribute-map.x
 http://code.google.com/p/webdavis/source/browse/wiki/attachments/attribute-policy.xml
 }}}
 
+===Configure Davis Properties in davis-host.properties===
+
+|| *Param name* || *Description* ||
+|| insecureConnection || Indicates which authentication method will be used if users establish an insecure connection (HTTP). The supported values are:*shib* (shibboleth authentication) *basic* (basic authentication, really not secure, use it if you know what you are doing!) *block* (doesn't allow insecure connections)The default value is: *block* ||
+|| shared-token-header-name || HTTP header name of shared token, this is a unique ID to identify an IdP user, you can use something else but it has to be unique ||
+|| cn-header-name || HTTP header name of common name, this is a display name for an IdP user ||
+|| admin-cert-file || Cert file path that is used to establish a connection as rodsadmin ||
+|| admin-key-file || Key file path that is used to establish a connection as rodsadmin ||
+
+===Configuring iRods===
+    *The admin cert/key file is a certificate that is set to a rodsadmin user, e.g. rods. (rods is the only user we can use now, due to some issues in jargon) I suggest we use iRODS server certificate, since it is already on the server and secure. Then use the following command to set it to rods. Then Davis can use rods to find/create users.
+{{{
+iadmin moduser rods DN "<SERVER_DN>"
+}}}
+    * Place below createUser script in `<IRODS_HOME>`/server/bin/cmd/ This script Creates a new password for an iRODS user during "Real-Shib" login. Exits with error if the user does not exist.
+
+{{{
+http://code.google.com/p/webdavis/source/browse/wiki/attachments/createUser
+}}}  
+
+
+
 ===Logging===
 There are 2 different Shibboleth-related log files you can access for troubleshooting.
 
@@ -88,6 +110,7 @@ There are 2 different Shibboleth-related log files you can access for troublesho
         * shibd.log: is located in /var/log/shibboleth and can be configured in /etc/shibboleth/shibd.logger
 
 Make sure that the right processes have write permissions to the log files!
+
 
 ===Layout===
 Shibboleth ships with some default html pages. These can be found in the /etc/shibboleth folder.

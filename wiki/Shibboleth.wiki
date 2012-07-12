@@ -90,7 +90,7 @@ http://code.google.com/p/webdavis/source/browse/wiki/attachments/attribute-polic
 || admin-key-file || Key file path that is used to establish a connection as rodsadmin ||
 
 ===Configuring iRods===
-    *The admin cert/key file is a certificate that is set to a rodsadmin user, e.g. rods. (rods is the only user we can use now, due to some issues in jargon) I suggest we use iRODS server certificate, since it is already on the server and secure. Then use the following command to set it to rods. Then Davis can use rods to find/create users.
+    * The admin cert/key file is a certificate that is set to a rodsadmin user, e.g. rods. (rods is the only user we can use now, due to some issues in jargon) I suggest we use iRODS server certificate, since it is already on the server and secure. Then use the following command to set it to rods. Then Davis can use rods to find/create users.
 {{{
 iadmin moduser rods DN "<SERVER_DN>"
 }}}

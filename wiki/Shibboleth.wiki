@@ -63,7 +63,7 @@ If configuring an older version (2.2.x or 2.3.x): instead of modifying the *`<SS
 
             * Move the isDefault="true" from the Intranet session initiator to the DS session Initiator
 
-=====Version 2.4====
+====Version 2.4====
 Configure Session Initiator: locate the *`<SSO>`* element (new in SP 2.4) and: 
 
             * Remove reference to default idp.example.org - delete the entityID attribute
@@ -73,4 +73,3 @@ Configure Session Initiator: locate the *`<SSO>`* element (new in SP 2.4) and:
              {{{
                 discoveryURL=" https://ds.aaf.edu.au/discovery/DS"
              }}}
-

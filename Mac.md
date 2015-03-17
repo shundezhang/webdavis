@@ -1,0 +1,40 @@
+Mac users use '''Finder''' as webdav client.
+
+Before using Davis, it is strongly suggested that .DS\_Store file creation should be disabled over network connections. To do that,
+(From http://support.apple.com/kb/HT1629)
+
+  1. Open the Terminal.
+> 2. Type:
+```
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+```
+> 3. Press Return.
+> 4. Restart the computer.
+Note: This will affect the user's interactions with SMB/CIFS, AFP, NFS, and WebDAV servers.
+
+To setup a Davis connection:
+  1. In the Finder, press Cmd-k . (Alternatively, from the Go menu, choose Connect to Server.)
+![http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-1.png](http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-1.png)
+> 2. In the "Server Address:" field, enter a URL that points to the destination Resources tool. See [General doc](General.md) for details.
+![http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-2.png](http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-2.png)
+> 3. You can save this URL as your favorite URL by clicking '''+'''.
+> 4. Click "Connect". When prompted, enter your username and password. See [General doc](General.md) for details.
+![http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-3.png](http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-3.png)
+> 5. Your SRB collection then appears as a network drive.
+![http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-4.png](http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-4.png)
+> 6. You can now use the preview function. (Press 'space' on the file you want to preview.)
+![http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-5.jpg](http://webdavis.googlecode.com/svn/wiki/attachments/mac/mac-5.jpg)
+> 6. To disconnect, simply click the "eject" icon on the left of Finder.
+
+## Other WebDAV client on Mac ##
+
+Alternatively, other client can be used to prevent from the generation of .DS\_Store files. [CyberDuck](http://cyberduck.ch/) is an option.
+
+To use CyberDuck, put details like this.
+![http://webdavis.googlecode.com/svn/wiki/attachments/mac/cyberduck-1.png](http://webdavis.googlecode.com/svn/wiki/attachments/mac/cyberduck-1.png)
+
+Hit 'connect', and you'll get a directory list.
+![http://webdavis.googlecode.com/svn/wiki/attachments/mac/cyberduck-2.png](http://webdavis.googlecode.com/svn/wiki/attachments/mac/cyberduck-2.png)
+
+Also you can hit 'space' on any file to preview it.
+![http://webdavis.googlecode.com/svn/wiki/attachments/mac/cyberduck-3.jpg](http://webdavis.googlecode.com/svn/wiki/attachments/mac/cyberduck-3.jpg)

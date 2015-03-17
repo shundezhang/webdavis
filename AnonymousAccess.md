@@ -1,0 +1,24 @@
+# Anonymous Collection Access #
+
+The idea is that some collections should be accessible to the public without entering any username or password.
+
+## iRODS ##
+
+We use a specific iRODS account for public access. Any user accessing the public collection will log in as this account.<br>
+Normally, we use the iRODS anonymous account, which can use anything as password.<br>
+You can certainly create an account for this purpose.<br>
+<br>
+For the public collection, you need to give read permission to the above account, and set it to be "inherit".<br>
+<pre><code>ichmod read anonymous /Zone/public/collection<br>
+ichmod inherit /Zone/public/collection<br>
+</code></pre>
+
+<h2>Davis</h2>
+
+Edit web.xml.<br>
+Put "username:password" in the value field of anonymousCredentials. If you use anonymous account, you can put "anonymous:anything". <br>
+Put a list of public collections in the value field of anonymousCollections, e.g. "/ARCS/projects/public,/ARCS/projects/open".<br>
+Restart Davis.<br>
+<br>
+If you want to get to the public collection as yourself, e.g. to upload stuff to it, you need to go to your home directory, where you get prompt for your username and password.<br>
+Then you can navigate to the public collection to upload stuff.

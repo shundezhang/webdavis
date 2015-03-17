@@ -1,0 +1,221 @@
+## Dynamic Objects ##
+
+Davis now supports the addition of objects to the user interface (UI) and server which are not implemented in the Davis source code itself. These objects can be declared in the Davis configuration properties files to allow site or machine specific functionality to be added to Davis without compromising Davis' generic nature. What prompted the inclusion of this mechanism was the need to support the creation of ANDS PIDs for collections in the ARCS Data Fabric. ARCS PID creation is very much an organisation specific function, and we preferred to keep this external to the main Davis code.
+
+Declarations for widgets such as buttons or metadata can be added to the Davis configuration properties files by a site administrator. Where those widgets will appear in the UI, and what their actions should be are specified in their declaration.
+
+
+### Declaring Dynamic Objects ###
+
+Dynamic objects may be declared in any of the Davis configuration properties files. Each object is declared as detailed below.
+
+''dynamicObjectDeclaration''
+
+> ''id'''''='''''value''
+
+''id''
+> '''dynamicobject'''''chars''
+
+> This field is an identifier for the dynamic object declaration. It must begin with the string '''dynamicobject'''. The ''chars'' suffix string is arbitrary but must be unique.
+
+''chars''
+> Printable and escaped chars (except '''=''') as defined by the [Java Properties class](http://java.sun.com/javase/6/docs/api/java/util/Properties.html#load(java.io.Reader)).
+
+''value''
+> '''{''' ''JSON'' '''}'''
+
+''JSON''
+> JSON formatted text defining the object (see http://json.org/)
+
+
+
+### Currently Defined JSON Members ###
+
+'''name'''
+> The dynamic object's name. The value for this JSON member must be unique as it is used internally to identify the dynamic object, and must not contain whitespace. As an example, when a dynamic button is clicked by the user, this value is used by the server to locate the rule to be executed from the dynamic objects declarations.
+
+'''displayTitle'''
+> The value of this JSON member will be used by the UI when displaying the dynamic object, and may contain whitespace. As an example, this field is used as the text displayed on dynamic buttons.
+
+'''objectType'''
+> Defines what kind of dynamic object this is. See Dynamic Object Types below.
+
+'''anonymous'''
+> Determines whether the object should be active when the user has navigated to an anonymous collection. Valid values are '''enable''' and '''disable'''. The default is '''enable'''.
+
+'''trash'''
+> Determines whether the object should be active when the user has navigated to a trash folder. Valid values are '''enable''' and '''disable'''. The default is '''enable'''.
+
+'''location'''
+> Determines where a displayable dynamic object will be placed in the UI. There are a number of possible location values currently defined for Davis, but note that it is the UI which decides the exact meaning for these locations.
+
+> Currently defined values and their meanings are:
+
+> '''selection'''
+> > Buttons will be added to the list of selection related buttons to the right of the collection listing table (where permissions and metadata buttons are).
+
+
+> '''displayMetadata''' objects (see below) will be displayed in a column of the listing table. The column heading is defined by the '''displayTitle''' value and the row entry will be the value of the metadata tag specified by the '''metadataName''' value (see below).
+
+> '''collection'''
+> > Buttons will be added to the list of collection related buttons (where the upload and create directory buttons are).
+
+
+> '''displayMetadata''' objects will be displayed below the breadcrumb.
+
+> '''session'''
+> > Buttons will be placed next to the session related buttons (where the home and trash buttons are).
+
+'''metadataName'''
+
+> Used only for '''displayMetadata''' dynamic objects (see below). This member specifies the associated matadata tag name for the object. How the tag is used depends on where the object is located (see "'''location'''" above).
+
+'''inputs'''
+> Members appearing inside the '''inputs''' member define information sources for the object. The significance of these inputs depends on the type of dynamic object (see Dynamic Object Inputs below).
+
+'''rule'''
+> Currently only used for '''button''' objects. This associates an iRODS rule with a dynamic object. For example, after a button widget is clicked and the OK button of its prompt is selected, the rule text is sent to the iRODS server for execution. This is the primary motivation for adding dynamic objects to Davis. Tying rules to UI widgets allows organisation specific functionality to be included in Davis without that functionality being hard coded.
+
+
+
+### Dynamic Object Types ###
+
+Currently there are only two types of dynamic objects defined for Davis.
+
+> '''button'''
+> > A push button to be displayed in the UI. Its position is defined by the '''location''' member described above.
+
+
+> '''displayMetadata'''
+> > An item of metadata to be displayed. The metadata tag to be displayed is determined by the '''displayMetadata''' value, and the position and method for display is defined by the '''location''' member described above.
+
+
+
+
+### Dynamic Object Inputs ###
+
+Members appearing inside the '''inputs''' member define information sources for an object. The significance of these inputs depends on the type of dynamic object as follows.
+
+
+> '''singleSelection'''
+> > Used only for '''selection''' buttons. Determines whether the widget should be disabled when more than one item has been selected in the listing table. This is useful for actions which can only be performed on one item at a time (for example, renaming a file). Currently defined values are '''true''' or '''false'''. The default is '''false''' (widget is enabled for multiple selections).
+
+
+> '''metadataName'''
+> > Used only for '''displayMetadata''' objects (and currently only for the '''collection''' and '''selection''' locations). This specifies a metadata tag whose value should be used as an HREF value in an anchor tag when displaying the widget. This allows a widget to be displayed whose title is an HTML link with text specified by the dynamic object's '''metdataName''' member, and link target specified by the object's '''inputs.metadataName''' member.
+
+
+> '''args'''
+> > Currently used only for button widgets. Members appearing inside the '''args''' member define what is to be displayed in the prompt dialog when the button is clicked. Currently defined argument members are:
+
+
+> '''name'''
+> > Specifies an argument name. This member must be accompanied by a '''text''' member (see below). This causes an input box to be displayed in the prompt which allows the user to enter information. The input box is given a label specified by the '''text''' member.
+
+
+> When the user clicks on the OK button of the prompt dialog, all '''name''' members are sent to the Davis server along with the values in their corresponding edit box. The server will then execute any rule defined in the object's declaration, and will include the passed argument information in the rule.
+
+> '''text'''
+> > The string value specified will be displayed as a paragraph. It is interpreted as an HTML fragment and so may contain tags such as `<br>` or `<b>` to control formatting.
+
+
+> These '''name''' and '''text''' members allow an elaborate prompt dialog to be defined for a widget. A name and text member pair produce a labeled input box, while a text member with no name member produces paragraphs of text. Defining a number of these members can create dialogs containing richly formatted text, capable of supplying multiple input arguments.
+
+
+
+
+### Examples ###
+
+#### Example 1 ####
+
+
+```
+dynamicobject_rule1={"name": "create_pid", "displayTitle": "Create ANDS PID", "objectType": "button", \
+
+         "anonymous": "disable", "trash": "disable", "location": "selection" \
+
+         "inputs": {"args": [ \
+
+                          {"text": "Are you sure?"}, \
+
+                          {"text": "<br>Warning: you will *NOT* be able to reverse this operation."}, \
+
+                          {"text": "<br>For the full PID usage policy, please refer to the ANDS PID Policy"}, \
+
+                          {"text": "document: <a href=\\"http://ands.org.au/services/pid-policy.html\\" target=\\"_blank\\">http://ands.org.au/services/pid-policy.html</a>"}, \
+
+                        ] \
+
+                   }, \
+
+         "rule": "createPIDPy||msiPyInitialize##msiLocalPython2(/opt/iRODS-2.1v/iRODS/server/bin/cmd/pid_util.py, create_pid, noTestRecursion, \\"*filelist\\", *OUT)##msiPyFinalize|nop"}
+
+
+```
+
+> This dynamic object places a button with title "Create ANDS PID" below the selection buttons to the right of the files listing table. The button is disabled for anonymous collections and trash folders, and enabled for one or more selected items. When the button is clicked, a dialog appears which gives the a warning, including a link to the ANDS PID policy page. If the OK button is clicked, then the specified rule (python based) is executed on the iRODS server in order to request a PID.
+
+
+#### Example 2 ####
+
+
+```
+dynamicobject_colPID1={"name": "pid_col1", "displayTitle": "ARCS PID: ", "objectType": "displayMetadata", \
+			"location": "collection", "metadataName": "PID"}
+
+```
+
+
+> This causes the UI to display the contents of the PID metadata tag for the current directory below the breadcrumb.
+
+
+#### Example 3 ####
+
+
+```
+dynamicobject_selPID1={"name": "pid_sel1", "displayTitle": "ARCS PID", "objectType": "displayMetadata", \
+			"location": "selection", "metadataName": "PID", \
+		        "inputs": {"metadataName": "HANDLE_URL"}}
+
+
+```
+> A column will appear in the listing table with the heading "ARCS PID". Any item in the listing table which has a metadata tag "PID" will have an entry in that column which is the value of the PID tag. That entry will also be a link to the URL contained in the item's HANDLE\_URL metadata tag.
+
+
+#### Example 4 ####
+
+
+```
+dynamicobject_sess1={"name": "irods_rule_sess1", "displayTitle": "session 1", "objectType": "button", "location": "session" \
+
+          "inputs": {"args": [ \
+
+                           {"text": "This is an example of a dynamic object with an argument.<br>"}, \
+
+                           {"name": "arg1", "text": "Enter a value:"} \
+
+                         ] \
+
+                    }, \
+
+          "rule": "this is an invalid rule"}
+
+```
+
+> This is a contrived example of a dynamic button which takes an argument. The prompt consists of a line of text, followed by an input box with a label. After pressing the OK button, the (meaningless) rule text and user input is sent to the server for execution. The Davis log informs us:
+
+
+```
+Executing rule 'irods_rule_sess1'
+
+commandLine=this is an invalid rule
+
+	    *arg1=why should i
+
+	    *OUT
+
+```
+
+> This shows that arg1 was passed with the user's input.
+
+> Of course Davis would respond with an error dialog indicating that the rule execution failed!

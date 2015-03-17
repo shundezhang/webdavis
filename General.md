@@ -1,0 +1,75 @@
+## User Login and Authentication ##
+
+As shibboleth is not supported by existing WebDAV clients, we have to use HTTP 'basic' authentication (e.g. username/password box) for them. As they are transferred as 'plain' text, we need to use HTTPS in this case. We use real shibboleth login for HTTP connections, as the whole login process will be via HTTPS and data transfer will be via HTTP, which is faster.
+
+![http://webdavis.googlecode.com/svn/wiki/attachments/general/login.png](http://webdavis.googlecode.com/svn/wiki/attachments/general/login.png)
+
+### Under HTTP ###
+Real Shibboleth with WAYF, then redirected to your home IdP. You enter your IdP username/password, if valid you'll get into Davis.
+
+### Under HTTPS ###
+
+You can use normal iRODS account, MyProxy or shibboleth.
+
+For normal '''iRODS account''', just enter iRODS username and password.
+
+For '''MyProxy''', you need to upload your proxy to MyProxy server with option ''-a''. (You need to ask admin which MyProxy is configured in Davis) Then enter "myproxy\username" in username box, where username is the username to retrieve your proxy from MyProxy, also your passphrase in password box.
+
+'''Shibboleth''' authentication is achieved via the use of a SLCS server and GSI authentication on SRB/iRODS.
+
+When a user logs in with IdP name, IdP account and IdP password, Davis sends a request with them to a SLCS server.
+The SLCS server then returns a SLCS certificate. Then this certificate is used by Davis for GSI authentication.
+So the DN of this SLCS certificate should be set to a SRB/iRODS user beforehand, or on the fly (by a iRODS rule or ARCS hacks to SRB).
+
+In particular, the slcs client we used is in http://projects.arcs.org.au/trac/slcs-client/. You can change the configuration file
+to use your SLCS.
+
+The following section describes how to do shibboleth login in this situation.
+
+#### username in Shibboleth login with HTTP basic authentication ####
+
+As Webdav uses basic authentication, HTTPS is used to protect the username and password transferred across the network.
+
+At the beginning of each connection, a prompt is popped up to ask username and password. For username, the following format is used.
+```
+[IDP_name\]username[.domain_name][@server_name][#resource_name]
+```
+
+  * Anything in brackets is optional.
+  * Default values for domain name, server name and resource name are defined by system admin.
+  * If IDP name is specified, username is the name of your IDP account. Otherwise, it is the name of SRB account.
+  * Likewise, if using IDP, the password is the password of your IDP account. Otherwise it is the password of your SRB account.
+  * IDP name matches against full name first, then sub-string. For example, "NCI" will be matched to "NCI", if no "NCI" is found, the system will use any name contains "NCI", e.g. "NCI National Facility".
+  * If only a slash presents, the default IdP name will be used.
+  * Resource name works like IDP name. If "datafabric" is typed in, "datafabric" will be used in the first place. Otherwise, "datafabric%" will be used, e.g. "datafabric.srb.sapac.edu.au".
+  * Server Name will be used as Zone Name.
+  * If Server Name is provided and Domain Name is not, Domain Name will be changed to be the same as Server Name.
+
+For technical details, please see [here](UserAuthenticationTechDetails.md).
+
+## SRB/iRODS collection/Directory ##
+
+SRB/iRODS collection is specified in the URL, following the web application name. For example, if the web application name is
+```
+https://adelaide.sasr.edu.au/davis
+```
+or
+```
+https://davis.arcs.org.au
+```
+Your desired SRB/iRODS collection can be added to the end of it. For example:
+```
+https://adelaide.sasr.edu.au/davis/srb.sapac.edu.au/home/shunde.srb.sapac.edu.au
+```
+or
+```
+https://davis.arcs.org.au/srb.sapac.edu.au/home/shunde.srb.sapac.edu.au
+```
+If you don't know your home directory, you can use tilde(~) to get into your home directory.
+```
+https://adelaide.sasr.edu.au/davis/~
+```
+or
+```
+https://davis.arcs.org.au/~
+```

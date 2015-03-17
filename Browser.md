@@ -1,0 +1,13 @@
+Browsers are used to browse directories and files, download files, change permissions of objects as well as manipulating metadata.
+
+Videos:
+
+https://df.arcs.org.au/ARCS/worldview/davis-materials/davis-browser.htm
+
+This is a screenshot of modifying metadata.
+
+![http://webdavis.googlecode.com/svn/wiki/attachments/browser/browser-1.jpg](http://webdavis.googlecode.com/svn/wiki/attachments/browser/browser-1.jpg)
+
+This is a screenshot of changing permissions.
+
+![http://webdavis.googlecode.com/svn/wiki/attachments/browser/browser-2.jpg](http://webdavis.googlecode.com/svn/wiki/attachments/browser/browser-2.jpg)

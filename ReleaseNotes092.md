@@ -1,0 +1,39 @@
+Updates:
+
+  * Rejects '/' in file names in dialogs.
+
+  * Recursive delete in trash uses Jargon call for speed. Previously this was buggy in Jargon and so Davis did the recursion (slower) instead.
+
+  * Jargon library comes from the trunk rather than the temporary hacked version.
+
+
+[[BR](BR.md)]
+New features:
+
+  * Davis detects loss of server connection and automatically resets it (from the UI).
+
+  * Replica button added. This allows users to view and change replicas for a file.
+
+  * UI checks that dojo's version is what's expected.
+
+  * Upload and Create Directory buttons are disabled in readonly directories.
+
+
+[[BR](BR.md)]
+Bug Fixes:
+
+  * Handles newlines in file names.
+
+  * Jargon exceptions are now caught when closing sessions.
+
+  * Empty file names are rejected for rename and create directory.
+
+  * Unicode file names are now handled correctly.
+
+  * Navigation is disabled during change directory to avoid UI confusion.
+
+  * The Access Control dialog user list is no longer limited to 300 items.
+
+  * Added no-cache directives to response header when downloading files. Should prevent browser caching of downloads.
+
+  * When listing or getting a file, Davis now returns a clean replica if available, otherwise if only a dirty replica exists, it returns that. Solves problems with Finder and iRODS 2.3 where zero length files are now shown as dirty.

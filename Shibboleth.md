@@ -1,0 +1,162 @@
+# Integrating Shibboleth to Davis #
+
+## 1. Installing Shibboleth Service Provider[SP](SP.md). ##
+```
+yum install httpd mod_ssl php
+wget http://download.opensuse.org/repositories/security://shibboleth/CentOS_5/security:shibboleth.repo -P /etc/yum.repos.d
+yum install shibboleth [or] yum install shibboleth.x86_64
+```
+
+## 2. Registering SP in AAF Federation. ##
+
+Login to
+```
+https://manager.aaf.edu.au/federationregistry/ 
+```
+Create New Service Provider with below values
+```
+Subscribers --> Service Providers --> Create
+
+Organization = < Your Home Organization >
+Display Name = < Name of your SP >
+Service URL = < https://<hostname> >
+Select appropriate Shibboleth SP version
+Host = < https://<hostname> >
+Certificate = < Paste content of /etc/shibboleth/sp-cert.pem >
+Required Attributes = < Select auEduPersonSharedToken, commonName, email >
+
+Click Next - Next - Next - Submit.
+
+```
+
+## 3. Configuring SP ##
+
+```
+wget https://manager.aaf.edu.au/metadata/aaf-metadata-cert.pem -O /etc/shibboleth/aaf-metadata-cert.pem
+```
+
+### Edit /etc/shibboleth/shibboleth2.xml: ###
+
+  * Replace all instances of sp.example.org with your hostname.
+
+  * In the **`<Sessions>`** element: Make session handler use SSL: set **handlerSSL="true"**
+
+  * Load the federation metadata: add the following (or equivalent) section into /etc/shibboleth/shibboleth2.xml just above the sample (commented-out) **MetadataProvider** element
+
+```
+<MetadataProvider type="XML" uri="https://manager.aaf.edu.au/metadata/metadata.aaf.signed.xml"
+     backingFilePath="metadata.aaf.xml" reloadInterval="7200">
+   <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
+   <MetadataFilter type="Signature" certificate="aaf-metadata-cert.pem"/>
+</MetadataProvider>
+
+```
+
+### Configure Session Initiator ###
+#### Version 2.2 and 2.3 ####
+
+If configuring an older version (2.2.x or 2.3.x): instead of modifying the **`<SSO>`** element (which was only introduced in 2.4.x), modify the SessionInitiator elements:
+
+  * For AAF: configure the URL for the SAMLDS initiator to  https://ds.[test.]aaf.edu.au/discovery/DS
+
+  * Move the isDefault="true" from the Intranet session initiator to the DS session Initiator
+
+#### Version 2.4 ####
+Configure Session Initiator: locate the **`<SSO>`** element (new in SP 2.4) and:
+
+  * Remove reference to default idp.example.org - delete the entityID attribute
+
+  * Configure the Discovery Service URL in the discoveryURL attribute:
+
+```
+                discoveryURL=" https://ds.aaf.edu.au/discovery/DS"
+```
+
+### Replace files in /etc/shibboleth/ with these ###
+```
+http://code.google.com/p/webdavis/source/browse/wiki/attachments/attribute-map.xml
+http://code.google.com/p/webdavis/source/browse/wiki/attachments/attribute-policy.xml
+```
+
+### Configure Davis Properties in davis-host.properties ###
+
+| **Param name** | **Description** |
+|:---------------|:----------------|
+| insecureConnection | Indicates which authentication method will be used if users establish an insecure connection (HTTP). The supported values are:**shib** (shibboleth authentication) **basic** (basic authentication, really not secure, use it if you know what you are doing!) **block** (doesn't allow insecure connections)The default value is: **block** |
+| shared-token-header-name | HTTP header name of shared token, this is a unique ID to identify an IdP user, you can use something else but it has to be unique |
+| cn-header-name | HTTP header name of common name, this is a display name for an IdP user |
+| admin-cert-file | Cert file path that is used to establish a connection as rodsadmin |
+| admin-key-file | Key file path that is used to establish a connection as rodsadmin |
+
+### Configuring iRods ###
+  * The admin cert/key file is a certificate that is set to a rodsadmin user, e.g. rods. (rods is the only user we can use now, due to some issues in jargon) I suggest we use iRODS server certificate, since it is already on the server and secure. Then use the following command to set it to rods. Then Davis can use rods to find/create users.
+```
+iadmin moduser rods DN "<SERVER_DN>"
+```
+  * Place below createUser script in `<IRODS_HOME>`/server/bin/cmd/ This script Creates a new password for an iRODS user during "Real-Shib" login. Exits with error if the user does not exist.
+
+```
+http://code.google.com/p/webdavis/source/browse/wiki/attachments/createUser
+```
+
+### Create necessary Soft links ###
+```
+cd /var/www/html
+ln -s $JETTY_HOME/webapps/dojoroot dojoroot
+ln -s $JETTY_HOME/webapps/images images
+ln -s $JETTY_HOME/webapps/include include
+```
+
+### Logging ###
+There are 2 different Shibboleth-related log files you can access for troubleshooting.
+
+  * native.log: is located in /var/log/httpd and can be configured in /etc/shibboleth/native.logger
+
+  * shibd.log: is located in /var/log/shibboleth and can be configured in /etc/shibboleth/shibd.logger
+
+Make sure that the right processes have write permissions to the log files!
+
+
+### Layout ###
+Shibboleth ships with some default html pages. These can be found in the /etc/shibboleth folder.
+
+> Modify these files to your own look and feel:
+```
+accessError.html
+bindingTemplate.html
+globalLogout.html
+localLogout.html
+metadataError.html
+postTemplate.html
+sessionError.html
+sslError.html
+```
+
+### Protect a resource ###
+
+You can protect a resource with Shibboleth by configuring your Apache webserver. Edit the file /etc/httpd/conf.d/shib.conf:
+
+```
+<Location /secure>
+    ShibRequestSetting authType shibboleth
+  ShibRequestSetting requireSession false
+    require valid-user
+</Location>
+```
+
+### Finishing up ###
+
+> This should get you going.
+
+> Start up Apache, shibd and davis:
+```
+service httpd start
+service shibd start
+service davis start
+```
+
+### Testing ###
+Place below script under /var/www/html/secure/ and browse http://`<hostname>`/secure
+```
+http://code.google.com/p/webdavis/source/browse/wiki/attachments/shibenv.php
+```

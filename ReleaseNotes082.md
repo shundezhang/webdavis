@@ -1,0 +1,11 @@
+Updates:
+
+  * new SLCS-client for AAF
+
+New features:
+
+  * Dynamic objects can display metadata in the file list table. Please see [here](https://projects.arcs.org.au/trac/davis/wiki/HowTo/DynamicObjects) for details.
+
+Bug Fixes:
+
+  * 'Funny' characters in file names are handled much better now due to a complete overhaul of JSON and HTML generation code.

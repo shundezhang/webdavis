@@ -1,0 +1,7 @@
+New Features:
+  * security fix for session
+  * new jargon, new slcs-client (fixed issues with uq and intersect)
+  * improved performance
+Upgrade:
+  * all jars
+  * some items in web.xml

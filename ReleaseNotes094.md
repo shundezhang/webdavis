@@ -1,0 +1,25 @@
+New features:
+
+  * Davis WebDAV interface automatically reconnects to irods after an irods agent dies. WebDAV clients will usually continue on unaffected.
+
+[[BR](BR.md)]
+
+Bug Fixes and Updates:
+
+  * The user list in the Access Control dialog is now a simple text box. The pull down list which revealed all user account names was seen as a security issue by a number of users. Note that the access control list (the table widget on the left in the dialog) still lists user names when querying a collection (directory), but not when querying a file. This is an issue with iRODS and can be seen when using icommands.
+
+  * Change of colours for the user interface. This was done to make Davis look more like other tools being used by ARCS.
+
+  * The ui-include configuration items are now applied to the user interface code before other config substitutions are made. This means that Davis `<parameter />` tags can now be used in the included snippets.
+
+  * When a resource is down and a user deletes a file which has a copy on the unavailable resource, Davis will no longer report an error to the user if the file has actually been deleted. Jargon returns a failure result to Davis in this scenario and so the user was warned. Davis now checks whether the file has actually gone, and if so, logs the event but doesn't notify the user.
+
+  * Davis can handle clients which don't provide a 'user-agent' header.
+
+  * Trying to upload a file after the user's session has expired is now handled nicely.
+
+  * Davis generates the correct links when a user navigates to the root collection (directory). This is to support federated resources.
+
+  * Zone name is now included when connecting to irods for admin account to fix real-shib login to slave server.
+
+  * Jetty now listens for connections only on localhost by default (see [Installation](Installation.md) to change this).

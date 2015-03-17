@@ -1,0 +1,101 @@
+# Davis REST API #
+Current as of Davis 0.9.3
+<br />
+
+## POST methods (not WebDAV) ##
+### Get/Change permission ###
+Description: Get or change permissions of one or more collections or files. Domain is only applicable to SRB.<br />
+HTTP Method: POST<br />
+HTTP URI: /PATH/TO/PARENT?method=permission&username=&domain=&permission=&recursive=[true/false]&sticky=[true/false]<br />
+HTTP Request Body:
+```
+{[
+{"files":["","",...]}
+]}
+```
+HTTP Response Body: Contains permissions of the last collection/file specified in request body:
+```
+{
+username:"",
+domain:"",
+permission:""
+}
+```
+
+### Get/Change metadata ###
+Description: Get or change metadata of one or more collections or files<br />
+HTTP Method: POST<br />
+HTTP URI: /PATH/TO/PARENT?method=metadata<br />
+HTTP Request Body:
+```
+{[
+{"files":["","",...],
+ "metadata":[{"name":"","value":"","unit":""}]}
+]}
+```
+HTTP Response Body: Contains metadata of the last collection/file specified in request body:
+```
+{[
+{name:"",value:"",unit:""}
+]}
+```
+
+[[BR](BR.md)][[BR](BR.md)]
+
+## WebDAV methods ##
+### Davis also provides the following WebDAV methods (see http://webdav.org/): ###
+```
+DELETE, PROPFIND, PROPPATCH, COPY, MOVE, MKCOL, LOCK, UNLOCK
+```
+
+<br />
+### The following Davis methods provide extensions to the WebDAV specification as shown: ###
+
+### Delete items ###
+
+Davis allows the client to provide a list of items.
+
+Description: Delete one or more collections or files.<br />
+HTTP Method: DELETE<br />
+HTTP URI: /PATH/TO/PARENT<br />
+HTTP Request Body:
+```
+{[
+{"files":["","",...]}
+]}
+```
+
+### Move items ###
+
+Davis allows the client to provide a list of items.
+
+Description: Move one or more collections or files.<br />
+HTTP Method: MOVE<br />
+HTTP header: Destination: /PATH/TO/DESTINATION<br />
+HTTP Request Body:
+```
+{[
+{"files":["","",...]}
+]}
+```
+
+### Copy items ###
+
+Davis allows the client to provide a list of items.
+
+Description: Copy one or more collections or files.<br />
+HTTP Method: COPY<br />
+HTTP header: Destination: /PATH/TO/DESTINATION<br />
+HTTP Request Body:
+```
+{[
+{"files":["","",...]}
+]}
+```
+
+<br />
+## HTTP methods ##
+### Davis also provides the following HTTP methods ###
+```
+OPTIONS, HEAD, GET, POST, PUT
+```
